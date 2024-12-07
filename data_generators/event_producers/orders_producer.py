@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 
 class OrderProducer:
     def __init__(self, kafka_config: Dict, db_config: Dict):
+        self.kafka_config = kafka_config
         self.setup_connections(kafka_config, db_config)
         self.setup_kafka_topic()
         self.active_carts_and_users = self.load_active_carts_and_users()
@@ -60,20 +61,28 @@ class OrderProducer:
                 admin_client.close()
 
     def load_active_carts_and_users(self) -> List[Dict]:
-        """Fetch active carts with valid user references. Retries if none found."""
+        """Fetch active carts with valid user references and their default addresses."""
         while True:
             with self.conn.cursor() as cur:
                 cur.execute("""
-                    SELECT c.cart_id, c.user_id, u.billing_address_id, u.shipping_address_id
+                    SELECT
+                        c.cart_id,
+                        c.user_id,
+                        ba.address_id AS billing_address_id,
+                        sa.address_id AS shipping_address_id
                     FROM carts c
                     INNER JOIN users u ON c.user_id = u.user_id
+                    LEFT JOIN user_addresses ba ON u.user_id = ba.user_id AND ba.address_type = 'billing' AND ba.is_default = true
+                    LEFT JOIN user_addresses sa ON u.user_id = sa.user_id AND sa.address_type = 'shipping' AND sa.is_default = true
                     WHERE c.status = 'active'
-                """)
+                """)  # Added joins to fetch addresses
                 if data := cur.fetchall():
-                    logger.info(f"Loaded {len(data)} active carts and users")
+                    logger.info(f"Loaded {len(data)} active carts and users with addresses")
                     return data
                 logger.warning("No active carts and users found. Retrying in 10 seconds...")
                 time.sleep(10)
+
+
 
     def generate_order_event(self) -> Dict:
         if not self.active_carts_and_users:
@@ -140,7 +149,7 @@ if __name__ == "__main__":
     }
 
     kafka_config = {
-        'bootstrap_servers': ['kafka:9092']
+        'bootstrap_servers': ['kafka:29092']
     }
 
     producer = OrderProducer(kafka_config, db_config)

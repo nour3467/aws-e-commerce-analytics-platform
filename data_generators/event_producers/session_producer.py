@@ -206,7 +206,6 @@ if __name__ == "__main__":
     }
 
     kafka_config = {"bootstrap_servers": ["kafka:29092"]}
-    # kafka_config = {"bootstrap_servers": ["localhost:9092"]}
 
     producer = SessionProducer(kafka_config, db_config)
     producer.produce_events()

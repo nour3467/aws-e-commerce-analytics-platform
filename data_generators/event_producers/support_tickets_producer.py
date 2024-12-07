@@ -1,6 +1,6 @@
 import uuid
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from kafka import KafkaProducer, KafkaAdminClient
@@ -18,12 +18,12 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-class OrderItemProducer:
+class SupportTicketProducer:
     def __init__(self, kafka_config: Dict, db_config: Dict):
         self.kafka_config = kafka_config
         self.setup_connections(kafka_config, db_config)
         self.setup_kafka_topic()
-        self.active_orders_and_products = self.load_active_orders_and_products()
+        self.active_orders_and_users = self.load_active_orders_and_users()
 
     def setup_connections(self, kafka_config: Dict, db_config: Dict):
         self.conn = psycopg2.connect(**db_config, cursor_factory=RealDictCursor)
@@ -43,76 +43,82 @@ class OrderItemProducer:
             )
             existing_topics = admin_client.list_topics()
 
-            if "order_items" not in existing_topics:
-                logger.info("Creating topic 'order_items'...")
+            if "support_tickets" not in existing_topics:
+                logger.info("Creating topic 'support_tickets'...")
                 topic = NewTopic(
-                    name="order_items", num_partitions=3, replication_factor=1
+                    name="support_tickets", num_partitions=3, replication_factor=1
                 )
                 admin_client.create_topics(new_topics=[topic], validate_only=False)
-                logger.info("Topic 'order_items' created.")
+                logger.info("Topic 'support_tickets' created.")
             else:
-                logger.info("Topic 'order_items' already exists.")
+                logger.info("Topic 'support_tickets' already exists.")
 
         except Exception as e:
-            logger.error(f"Error creating topic 'order_items': {e}")
-
+            logger.error(f"Error creating topic 'support_tickets': {e}")
         finally:
             if admin_client:
                 admin_client.close()
 
-    def load_active_orders_and_products(self) -> List[Dict]:
-        """Fetch active orders and valid product references. Retries if none found."""
+    def load_active_orders_and_users(self) -> List[Dict]:
+        """Fetch completed orders and associated users. Retries if none found."""
         while True:
             with self.conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT o.order_id, p.product_id, p.price
+                    SELECT o.order_id, o.user_id
                     FROM orders o
-                    INNER JOIN products p ON p.is_active = true
+                    INNER JOIN users u ON o.user_id = u.user_id
                     WHERE o.status = 'completed'
                     """
                 )
                 if data := cur.fetchall():
-                    logger.info(f"Loaded {len(data)} active orders and products")
+                    logger.info(f"Loaded {len(data)} completed orders and users")
                     return data
-                logger.warning("No active orders and products found. Retrying in 10 seconds...")
+                logger.warning("No completed orders and users found. Retrying in 10 seconds...")
                 time.sleep(10)
 
-    def generate_order_item_event(self) -> Dict:
-        if not self.active_orders_and_products:
-            raise ValueError("No active orders or products found in the database")
+    def generate_support_ticket_event(self) -> Dict:
+        if not self.active_orders_and_users:
+            raise ValueError("No completed orders or users found in the database")
 
         now = datetime.now()
-        order_product = random.choice(self.active_orders_and_products)
+        order_user = random.choice(self.active_orders_and_users)
 
-        quantity = random.randint(1, 5)
-        unit_price = order_product["price"]
-        discount_amount = random.uniform(
-            0, unit_price * quantity * 0.2
-        )  # Max 20% discount
+        issue_types = ["Delivery Issue", "Payment Issue", "Product Defect", "Other"]
+        priorities = ["High", "Medium", "Low"]
+        statuses = ["Open", "In Progress", "Resolved"]
+
+        resolved_at = (
+            None
+            if random.random() > 0.6
+            else (now + timedelta(days=random.randint(1, 7))).isoformat()
+        )
+        satisfaction_score = None if resolved_at is None else random.randint(1, 5)
 
         return {
-            "order_item_id": str(uuid.uuid4()),
-            "order_id": order_product["order_id"],
-            "product_id": order_product["product_id"],
-            "quantity": quantity,
-            "unit_price": round(unit_price, 2),
-            "discount_amount": round(discount_amount, 2),
+            "ticket_id": str(uuid.uuid4()),
+            "user_id": order_user["user_id"],
+            "order_id": order_user["order_id"],
+            "issue_type": random.choice(issue_types),
+            "priority": random.choice(priorities),
+            "status": random.choice(statuses),
             "created_at": now.isoformat(),
+            "resolved_at": resolved_at,
+            "satisfaction_score": satisfaction_score,
         }
 
     def produce_events(self):
         try:
             i = 0
             while True:  # Infinite loop for real-world mimic
-                event = self.generate_order_item_event()
-                self.producer.send("order_items", event)
+                event = self.generate_support_ticket_event()
+                self.producer.send("support_tickets", event)
                 i += 1
                 if i % 100 == 0:
-                    logger.info(f"Produced {i} order item events")
-                time.sleep(random.uniform(0.1, 0.5))  # Simulate traffic
+                    logger.info(f"Produced {i} support ticket events")
+                time.sleep(random.uniform(0.1, 0.5))  # Simulate traffic patterns
         except Exception as e:
-            logger.error(f"Error producing order item events: {e}")
+            logger.error(f"Error producing support ticket events: {e}")
         finally:
             self.cleanup()
 
@@ -140,5 +146,5 @@ if __name__ == "__main__":
 
     kafka_config = {"bootstrap_servers": ["kafka:29092"]}
 
-    producer = OrderItemProducer(kafka_config, db_config)
+    producer = SupportTicketProducer(kafka_config, db_config)
     producer.produce_events()

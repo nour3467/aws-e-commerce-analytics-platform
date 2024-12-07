@@ -15,8 +15,6 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./storage/migrations/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
-      - ./storage/migrations/entrypoint.sh:/docker-entrypoint-initdb.d/entrypoint.sh
-    entrypoint: ["/docker-entrypoint-initdb.d/entrypoint.sh"]
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -173,6 +171,117 @@ services:
       - app-network
     command: python data_generators/event_producers/ticket_messages_producer.py
 
+  wishlists-producer:
+    build:
+      context: .
+      dockerfile: Dockerfile.produce
+    networks:
+      - app-network
+    command: python data_generators/event_producers/wishlists_producer.py
+
+  # Event Consumers
+  session-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consume
+    depends_on:
+      kafka:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
+    command: python stream_processing/consumers/session_consumer.py
+
+  product-view-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consume
+    depends_on:
+      session-consumer:
+        condition: service_started
+    networks:
+      - app-network
+    command: python stream_processing/consumers/product_view_consumer.py
+
+  cart-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consume
+    depends_on:
+      session-consumer:
+        condition: service_started
+    networks:
+      - app-network
+    command: python stream_processing/consumers/cart_consumer.py
+
+  cart-items-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consume
+    depends_on:
+      cart-consumer:
+        condition: service_started
+    networks:
+      - app-network
+    command: python stream_processing/consumers/cart_items_consumer.py
+
+  orders-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consume
+    depends_on:
+      cart-consumer:
+        condition: service_started
+    networks:
+      - app-network
+    command: python stream_processing/consumers/order_consumer.py
+
+  order-items-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consume
+    depends_on:
+      orders-consumer:
+        condition: service_started
+    networks:
+      - app-network
+    command: python stream_processing/consumers/order_items_consumer.py
+
+  support-tickets-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consume
+    depends_on:
+      orders-consumer:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
+    command: python stream_processing/consumers/support_tickets_consumer.py
+
+  ticket-messages-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consume
+    depends_on:
+      support-tickets-consumer:
+        condition: service_started
+    networks:
+      - app-network
+    command: python stream_processing/consumers/ticket_messages_consumer.py
+
+  wishlists-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consume
+    depends_on:
+      session-consumer:
+        condition: service_started
+    networks:
+      - app-network
+    command: python stream_processing/consumers/wishlists_consumer.py
 
 networks:
   app-network:

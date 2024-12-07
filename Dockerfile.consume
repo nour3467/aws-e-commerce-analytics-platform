@@ -1,0 +1,15 @@
+# Base image
+FROM python:3.9-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application files
+COPY . .
+
+# Set the default command for running a consumer
+CMD ["python", "stream_processing/consumers/session_consumer.py"]

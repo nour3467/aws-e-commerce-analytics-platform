@@ -51,7 +51,9 @@ events_producers:
 		orders-producer \
 		order-items-producer \
 		support-tickets-producer \
-		ticket-messages-producer
+		ticket-messages-producer \
+		wishlists-producer
+
 	@echo "Starting Event Producers..."
 	$(DOCKER_COMPOSE_CMD) up -d session-producer \
 		product-view-producer \
@@ -60,7 +62,31 @@ events_producers:
 		orders-producer \
 		order-items-producer \
 		support-tickets-producer \
-		ticket-messages-producer
+		ticket-messages-producer \
+		wishlists-producer
+
+events_consumers:
+	@echo "Building Event Consumers..."
+	$(DOCKER_COMPOSE_CMD) build session-consumer \
+		product-view-consumer \
+		cart-consumer \
+		cart-items-consumer \
+		orders-consumer \
+		order-items-consumer \
+		support-tickets-consumer \
+		ticket-messages-consumer \
+		wishlists-consumer
+	@echo "Starting Event Consumers..."
+	$(DOCKER_COMPOSE_CMD) up -d session-consumer \
+		product-view-consumer \
+		cart-consumer \
+		cart-items-consumer \
+		orders-consumer \
+		order-items-consumer \
+		support-tickets-consumer \
+		ticket-messages-consumer \
+		wishlists-consumer
+
 
 
 

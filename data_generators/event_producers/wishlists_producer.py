@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 
 class WishlistProducer:
     def __init__(self, kafka_config: Dict, db_config: Dict):
+        self.kafka_config = kafka_config
         self.setup_connections(kafka_config, db_config)
         self.setup_kafka_topic()
         self.active_users_and_products = self.load_active_users_and_products()
@@ -128,9 +129,7 @@ if __name__ == "__main__":
         "host": "postgres",
     }
 
-    kafka_config = {
-        'bootstrap_servers': ['kafka:9092']
-    }
+    kafka_config = {"bootstrap_servers": ["kafka:29092"]}
 
     producer = WishlistProducer(kafka_config, db_config)
     producer.produce_events()

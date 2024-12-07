@@ -27,6 +27,7 @@ class ProductViewProducer:
         self.setup_connections(kafka_config, db_config)
         self.setup_kafka_topic()
         self.active_sessions = self.load_active_sessions()
+        self.valid_product_ids = self.load_valid_product_ids()
 
     def setup_connections(self, kafka_config: Dict, db_config: Dict):
         self.conn = psycopg2.connect(**db_config, cursor_factory=RealDictCursor)
@@ -36,16 +37,12 @@ class ProductViewProducer:
         )
 
     def setup_kafka_topic(self):
-        """Ensure the Kafka topic exists, create it if it doesn't."""
-
         admin_client = None
-
         try:
             admin_client = KafkaAdminClient(
                 bootstrap_servers=self.kafka_config["bootstrap_servers"]
             )
             existing_topics = admin_client.list_topics()
-
             if "product_views" not in existing_topics:
                 logger.info("Creating topic 'product_views'...")
                 topic = NewTopic(
@@ -55,15 +52,13 @@ class ProductViewProducer:
                 logger.info("Topic 'product_views' created.")
             else:
                 logger.info("Topic 'product_views' already exists.")
-
         except Exception as e:
-            logger.error(f"Error creating topic 'product_viewsxx': {e}")
+            logger.error(f"Error creating topic 'product_views': {e}")
         finally:
             if admin_client:
                 admin_client.close()
 
     def load_active_sessions(self) -> List[Dict]:
-        """Fetch active sessions with valid user and session references. Retries if none found."""
         while True:
             with self.conn.cursor() as cur:
                 cur.execute(
@@ -80,20 +75,33 @@ class ProductViewProducer:
                 logger.warning("No active sessions found. Retrying in 10 seconds...")
                 time.sleep(10)
 
+    def load_valid_product_ids(self) -> List[str]:
+        """Fetch valid product IDs from the database."""
+        with self.conn.cursor() as cur:
+            cur.execute("SELECT product_id FROM products")
+            products = cur.fetchall()
+            if not products:
+                logger.warning("No valid product IDs found in the database.")
+                return []
+            product_ids = [product["product_id"] for product in products]
+            logger.info(f"Loaded {len(product_ids)} valid product IDs")
+            return product_ids
+
     def generate_product_view(self) -> Dict:
         if not self.active_sessions:
-            raise ValueError("No active sessions found in database")
+            raise ValueError("No active sessions found in the database")
+        if not self.valid_product_ids:
+            raise ValueError("No valid product IDs found in the database")
 
         now = datetime.now()
         session = random.choice(self.active_sessions)
+        product_id = random.choice(self.valid_product_ids)
 
         return {
             "view_id": str(uuid.uuid4()),
             "session_id": session["session_id"],
             "user_id": session["user_id"],
-            "product_id": str(
-                uuid.uuid4()
-            ),  # Mock product_id; replace with actual logic if needed
+            "product_id": product_id,  # Use valid product_id
             "view_timestamp": now.isoformat(),
             "view_duration": random.randint(1, 300),  # View duration in seconds
             "source_page": random.choice(
@@ -140,7 +148,7 @@ if __name__ == "__main__":
         "host": "postgres",
     }
 
-    kafka_config = {"bootstrap_servers": ["kafka:9092"]}
+    kafka_config = {"bootstrap_servers": ["kafka:29092"]}
 
     producer = ProductViewProducer(kafka_config, db_config)
     producer.produce_events()
