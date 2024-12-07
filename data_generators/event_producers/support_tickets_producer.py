@@ -59,8 +59,10 @@ class SupportTicketProducer:
             if admin_client:
                 admin_client.close()
 
-    def load_active_orders_and_users(self) -> List[Dict]:
-        """Fetch completed orders and associated users. Retries if none found."""
+    def load_active_orders_and_users(self, retry_interval: int = 10) -> List[Dict]:
+        """
+        Continuously fetch completed orders and associated users. Retries indefinitely if no data is found.
+        """
         while True:
             with self.conn.cursor() as cur:
                 cur.execute(
@@ -75,22 +77,29 @@ class SupportTicketProducer:
                     logger.info(f"Loaded {len(data)} completed orders and users")
                     return data
                 logger.warning("No completed orders and users found. Retrying in 10 seconds...")
-                time.sleep(10)
+                time.sleep(retry_interval)
+
 
     def generate_support_ticket_event(self) -> Dict:
+        """
+        Generate a single support ticket event with realistic patterns.
+        """
         if not self.active_orders_and_users:
-            raise ValueError("No completed orders or users found in the database")
+            self.active_orders_and_users = self.load_active_orders_and_users()
 
         now = datetime.now()
         order_user = random.choice(self.active_orders_and_users)
 
         issue_types = ["Delivery Issue", "Payment Issue", "Product Defect", "Other"]
+        issue_weights = [50, 20, 20, 10]  # Weighted probabilities
         priorities = ["High", "Medium", "Low"]
+        priority_weights = [30, 50, 20]
         statuses = ["Open", "In Progress", "Resolved"]
+        status_weights = [50, 30, 20]
 
         resolved_at = (
             None
-            if random.random() > 0.6
+            if random.choices([True, False], weights=[40, 60])[0]
             else (now + timedelta(days=random.randint(1, 7))).isoformat()
         )
         satisfaction_score = None if resolved_at is None else random.randint(1, 5)
@@ -99,28 +108,40 @@ class SupportTicketProducer:
             "ticket_id": str(uuid.uuid4()),
             "user_id": order_user["user_id"],
             "order_id": order_user["order_id"],
-            "issue_type": random.choice(issue_types),
-            "priority": random.choice(priorities),
-            "status": random.choice(statuses),
+            "issue_type": random.choices(issue_types, weights=issue_weights)[0],
+            "priority": random.choices(priorities, weights=priority_weights)[0],
+            "status": random.choices(statuses, weights=status_weights)[0],
             "created_at": now.isoformat(),
             "resolved_at": resolved_at,
             "satisfaction_score": satisfaction_score,
         }
 
+
     def produce_events(self):
+        """
+        Continuously produce support ticket events with realistic traffic patterns.
+        """
         try:
             i = 0
             while True:  # Infinite loop for real-world mimic
-                event = self.generate_support_ticket_event()
-                self.producer.send("support_tickets", event)
+                try:
+                    event = self.generate_support_ticket_event()
+                    self.producer.send("support_tickets", event)
+                    logger.info(f"Produced event: {event['ticket_id']}")
+                except Exception as e:
+                    logger.error(f"Error sending event to Kafka: {e}")
+
                 i += 1
                 if i % 100 == 0:
-                    logger.info(f"Produced {i} support ticket events")
-                time.sleep(random.uniform(0.1, 0.5))  # Simulate traffic patterns
+                    logger.info(f"Produced {i} support ticket events.")
+
+                # Simulate traffic patterns
+                time.sleep(random.uniform(0.5, 2.0))
         except Exception as e:
             logger.error(f"Error producing support ticket events: {e}")
         finally:
             self.cleanup()
+
 
     def cleanup(self):
         if self.producer:

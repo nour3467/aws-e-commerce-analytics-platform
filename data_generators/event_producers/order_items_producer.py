@@ -60,8 +60,14 @@ class OrderItemProducer:
             if admin_client:
                 admin_client.close()
 
-    def load_active_orders_and_products(self) -> List[Dict]:
-        """Fetch active orders and valid product references. Retries if none found."""
+    def load_active_orders_and_products(self, batch_size: int = 100, retry_interval: int = 10) -> List[Dict]:
+        """
+        Continuously fetch active orders and valid product references in batches.
+        Waits and retries indefinitely if no data is available.
+        """
+        offset = 0
+        active_orders = []
+
         while True:
             with self.conn.cursor() as cur:
                 cur.execute(
@@ -70,26 +76,34 @@ class OrderItemProducer:
                     FROM orders o
                     INNER JOIN products p ON p.is_active = true
                     WHERE o.status = 'completed'
-                    """
+                    LIMIT %s OFFSET %s
+                    """,
+                    (batch_size, offset),
                 )
-                if data := cur.fetchall():
-                    logger.info(f"Loaded {len(data)} active orders and products")
-                    return data
-                logger.warning("No active orders and products found. Retrying in 10 seconds...")
-                time.sleep(10)
+                if batch := cur.fetchall():
+                    active_orders.extend(batch)
+                    offset += batch_size
+                    logger.info(f"Fetched {len(batch)} rows of active orders and products.")
+                    return active_orders  # Return as soon as data is available
+                else:
+                    logger.warning(f"No active orders found. Retrying in {retry_interval} seconds...")
+                    time.sleep(retry_interval)  # Wait and retry
+
+
 
     def generate_order_item_event(self) -> Dict:
+        """
+        Generate a single order item event with realistic patterns.
+        """
         if not self.active_orders_and_products:
-            raise ValueError("No active orders or products found in the database")
+            raise ValueError("No active orders or products available.")
 
         now = datetime.now()
         order_product = random.choice(self.active_orders_and_products)
 
-        quantity = random.randint(1, 5)
-        unit_price = order_product["price"]
-        discount_amount = random.uniform(
-            0, unit_price * quantity * 0.2
-        )  # Max 20% discount
+        quantity = random.randint(1, 5)  # Simulate user purchasing 1-5 units
+        unit_price = float(order_product["price"])  # Convert to float for calculations
+        discount_amount = random.uniform(0, unit_price * quantity * 0.2)  # Max 20% discount
 
         return {
             "order_item_id": str(uuid.uuid4()),
@@ -101,20 +115,36 @@ class OrderItemProducer:
             "created_at": now.isoformat(),
         }
 
+
+
     def produce_events(self):
+        """
+        Generate and stream order item events with realistic traffic patterns.
+        """
         try:
             i = 0
-            while True:  # Infinite loop for real-world mimic
+            while True:
                 event = self.generate_order_item_event()
-                self.producer.send("order_items", event)
+
+                # Produce to Kafka
+                try:
+                    self.producer.send("order_items", event)
+                    logger.info(f"Produced event: {event['order_item_id']}")
+                except Exception as e:
+                    logger.error(f"Failed to send event to Kafka: {e}")
+
                 i += 1
                 if i % 100 == 0:
-                    logger.info(f"Produced {i} order item events")
-                time.sleep(random.uniform(0.1, 0.5))  # Simulate traffic
+                    logger.info(f"Produced {i} order item events.")
+
+                # Simulate traffic delay
+                time.sleep(random.uniform(0.1, 1.0))
+
         except Exception as e:
             logger.error(f"Error producing order item events: {e}")
         finally:
             self.cleanup()
+
 
     def cleanup(self):
         if self.producer:

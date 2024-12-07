@@ -8,3 +8,7 @@ venv/
 __pycache__/
 *.py[cod]
 
+./infrastructure/aws/terraform/variables.tf
+infrastructure/aws/terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/5.80.0/linux_amd64/terraform-provider-aws_v5.80.0_x5
+
+

@@ -59,59 +59,92 @@ class TicketMessageProducer:
             if admin_client:
                 admin_client.close()
 
-    def load_active_tickets(self) -> List[Dict]:
-        """Fetch active support tickets. Retries if none found."""
+    def load_active_tickets(self, retry_interval: int = 10) -> List[Dict]:
+        """
+        Continuously fetch active support tickets. Retries indefinitely if no tickets are found.
+        """
         while True:
             with self.conn.cursor() as cur:
-                cur.execute("""
+                cur.execute(
+                    """
                     SELECT ticket_id
                     FROM support_tickets
                     WHERE status IN ('Open', 'In Progress')
-                """)
-                if data := cur.fetchall():
-                    logger.info(f"Loaded {len(data)} active support tickets")
-                    return data
-                logger.warning("No active support tickets found. Retrying in 10 seconds...")
-                time.sleep(10)
+                    """
+                )
+                if tickets := cur.fetchall():
+                    logger.info(f"Loaded {len(tickets)} active support tickets")
+                    return tickets
+                logger.warning("No active support tickets found. Retrying in {retry_interval} seconds...")
+                time.sleep(retry_interval)
+
 
     def generate_ticket_message_event(self) -> Dict:
+        """
+        Generate a single ticket message event with realistic patterns.
+        """
         if not self.active_tickets:
-            raise ValueError("No active tickets found in the database")
+            self.active_tickets = self.load_active_tickets()
 
         now = datetime.now()
         ticket = random.choice(self.active_tickets)
 
-        sender_types = ['Customer', 'Support Agent']
-        message_texts = [
-            "Can you update me on this?",
-            "We are working on your issue.",
-            "Thanks for your patience!",
-            "Could you provide more details?",
-            "Your issue has been resolved."
-        ]
+        sender_type = random.choice(['Customer', 'Support Agent'])
+        message_texts = {
+            'Customer': [
+                "Can you update me on this?",
+                "I need more details.",
+                "Is there any progress on my issue?",
+                "Thanks for your help so far!"
+            ],
+            'Support Agent': [
+                "We are working on your issue.",
+                "Thanks for your patience!",
+                "Could you provide more details?",
+                "Your issue has been resolved."
+            ]
+        }
+
+        response_delay = (
+            random.uniform(0.5, 2.0) if sender_type == 'Support Agent' else random.uniform(5.0, 10.0)
+        )  # Faster for agents, slower for customers
+
+        time.sleep(response_delay)  # Simulate conversation flow
 
         return {
             'message_id': str(uuid.uuid4()),
             'ticket_id': ticket['ticket_id'],
-            'sender_type': random.choice(sender_types),
-            'message_text': random.choice(message_texts),
+            'sender_type': sender_type,
+            'message_text': random.choice(message_texts[sender_type]),
             'created_at': now.isoformat()
         }
 
+
     def produce_events(self):
+        """
+        Continuously produce ticket message events with realistic traffic patterns.
+        """
         try:
             i = 0
-            while True:  # Infinite loop for real-world mimic
-                event = self.generate_ticket_message_event()
-                self.producer.send('ticket_messages', event)
+            while True:
+                try:
+                    event = self.generate_ticket_message_event()
+                    self.producer.send('ticket_messages', event)
+                    logger.info(f"Produced event: {event['message_id']}")
+                except Exception as e:
+                    logger.error(f"Error sending event to Kafka: {e}")
+
                 i += 1
                 if i % 100 == 0:
-                    logger.info(f"Produced {i} ticket message events")
-                time.sleep(random.uniform(0.1, 0.5))  # Simulate message activity
+                    logger.info(f"Produced {i} ticket message events.")
+
+                # Mimic real-world conversation delays
+                time.sleep(random.uniform(0.1, 1.0))
         except Exception as e:
             logger.error(f"Error producing ticket message events: {e}")
         finally:
             self.cleanup()
+
 
     def cleanup(self):
         if self.producer:

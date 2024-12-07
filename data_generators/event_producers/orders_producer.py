@@ -60,11 +60,16 @@ class OrderProducer:
             if admin_client:
                 admin_client.close()
 
-    def load_active_carts_and_users(self) -> List[Dict]:
-        """Fetch active carts with valid user references and their default addresses."""
+    def load_active_carts_and_users(self, batch_size: int = 100, retry_interval: int = 10) -> List[Dict]:
+        """
+        Continuously fetch active carts with valid user references and their addresses.
+        Waits and retries indefinitely if no data is available.
+        """
+        offset = 0
         while True:
             with self.conn.cursor() as cur:
-                cur.execute("""
+                cur.execute(
+                    """
                     SELECT
                         c.cart_id,
                         c.user_id,
@@ -75,58 +80,86 @@ class OrderProducer:
                     LEFT JOIN user_addresses ba ON u.user_id = ba.user_id AND ba.address_type = 'billing' AND ba.is_default = true
                     LEFT JOIN user_addresses sa ON u.user_id = sa.user_id AND sa.address_type = 'shipping' AND sa.is_default = true
                     WHERE c.status = 'active'
-                """)  # Added joins to fetch addresses
-                if data := cur.fetchall():
-                    logger.info(f"Loaded {len(data)} active carts and users with addresses")
-                    return data
-                logger.warning("No active carts and users found. Retrying in 10 seconds...")
-                time.sleep(10)
+                    LIMIT %s OFFSET %s
+                    """,
+                    (batch_size, offset),
+                )
+                batch = cur.fetchall()
+
+                if batch:
+                    logger.info(f"Fetched {len(batch)} active carts and users with addresses.")
+                    return batch
+                else:
+                    logger.warning("No active carts found. Retrying in 10 seconds...")
+                    time.sleep(retry_interval)
+
 
 
 
     def generate_order_event(self) -> Dict:
+        """
+        Generate a single order event with realistic patterns.
+        """
         if not self.active_carts_and_users:
             raise ValueError("No active carts or users found in the database")
 
         now = datetime.now()
         cart_user = random.choice(self.active_carts_and_users)
 
-        total_amount = random.uniform(50, 500)  # Random order amount
-        tax_amount = total_amount * 0.1  # 10% tax
-        shipping_amount = random.uniform(5, 20)  # Random shipping cost
-        discount_amount = random.uniform(0, 50)  # Random discount
+        total_amount = random.uniform(50, 500)
+        tax_amount = total_amount * 0.1
+        shipping_amount = random.uniform(5, 20)
+        discount_amount = random.uniform(0, min(50, total_amount * 0.2))  # Max 20% discount
+
+        status = random.choices(
+            ["completed", "pending", "cancelled"],
+            weights=[70, 20, 10],  # 70% completed, 20% pending, 10% cancelled
+        )[0]
 
         return {
-            'order_id': str(uuid.uuid4()),
-            'user_id': cart_user['user_id'],
-            'cart_id': cart_user['cart_id'],
-            'status': random.choice(['completed', 'pending', 'cancelled']),
-            'total_amount': round(total_amount, 2),
-            'tax_amount': round(tax_amount, 2),
-            'shipping_amount': round(shipping_amount, 2),
-            'discount_amount': round(discount_amount, 2),
-            'payment_method': random.choice(['credit_card', 'paypal', 'bank_transfer']),
-            'delivery_method': random.choice(['standard', 'express']),
-            'billing_address_id': cart_user['billing_address_id'],
-            'shipping_address_id': cart_user['shipping_address_id'],
-            'created_at': now.isoformat(),
-            'updated_at': now.isoformat()
+            "order_id": str(uuid.uuid4()),
+            "user_id": cart_user["user_id"],
+            "cart_id": cart_user["cart_id"],
+            "status": status,
+            "total_amount": round(total_amount, 2),
+            "tax_amount": round(tax_amount, 2),
+            "shipping_amount": round(shipping_amount, 2),
+            "discount_amount": round(discount_amount, 2),
+            "payment_method": random.choice(["credit_card", "paypal", "bank_transfer"]),
+            "delivery_method": random.choice(["standard", "express"]),
+            "billing_address_id": cart_user["billing_address_id"],
+            "shipping_address_id": cart_user["shipping_address_id"],
+            "created_at": now.isoformat(),
+            "updated_at": now.isoformat(),
         }
 
+
     def produce_events(self):
+        """
+        Continuously produce order events with realistic traffic patterns.
+        """
         try:
             i = 0
-            while True:  # Infinite loop for real-world mimic
-                event = self.generate_order_event()
-                self.producer.send('orders', event)
+            while True:
+                try:
+                    event = self.generate_order_event()
+                    self.producer.send("orders", event)
+                    logger.info(f"Produced event: {event['order_id']}")
+                except Exception as e:
+                    logger.error(f"Error sending event to Kafka: {e}")
+
                 i += 1
                 if i % 100 == 0:
-                    logger.info(f"Produced {i} order events")
-                time.sleep(random.uniform(0.1, 0.5))  # Simulate user traffic patterns
+                    logger.info(f"Produced {i} order events.")
+
+                # Mimic user traffic
+                time.sleep(random.uniform(0.1, 0.5))  # Simulate realistic delays
+
         except Exception as e:
             logger.error(f"Error producing order events: {e}")
         finally:
             self.cleanup()
+
 
     def cleanup(self):
         if self.producer:

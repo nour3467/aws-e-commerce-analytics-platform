@@ -1,0 +1,35 @@
+name: Deploy to AWS
+
+on:
+  push:
+    paths:
+      - "**/*.py"
+      - "Dockerfile.produce"
+      - "Dockerfile.consume"
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Login to Amazon ECR
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build and Push Producer Image
+      run: |
+        docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.PRODUCER_REPO }}:latest -f Dockerfile.produce .
+        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.PRODUCER_REPO }}:latest
+
+    - name: Build and Push Consumer Image
+      run: |
+        docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.CONSUMER_REPO }}:latest -f Dockerfile.consume .
+        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.CONSUMER_REPO }}:latest
+
+    - name: Deploy with Terraform
+      run: |
+        cd infrastructure/aws/terraform
+        terraform init
+        terraform apply -auto-approve

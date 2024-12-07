@@ -58,43 +58,36 @@ class CartItemProducer:
             if admin_client:
                 admin_client.close()
 
-    def load_active_carts_and_products(self, batch_size: int = 1000):
+    def load_active_carts_and_products(self, batch_size: int = 100, retry_interval: int = 30):
         """
-        Fetch active carts with valid product references in batches and push to Kafka.
-
-        :param batch_size: Number of rows to fetch in each batch.
+        Continuously fetch active carts and products in batches. Waits and retries if no data is available.
         """
         offset = 0
-        query = f"""
-            SELECT c.cart_id, c.user_id, c.session_id, p.product_id, p.price
-            FROM carts c
-            INNER JOIN products p ON p.is_active = true
-            WHERE c.status = 'active'
-            LIMIT {batch_size} OFFSET %s
-        """
-
         while True:
             with self.conn.cursor() as cur:
-                cur.execute(query, (offset,))
+                cur.execute(
+                    """
+                    SELECT c.cart_id, c.user_id, c.session_id, p.product_id, p.price
+                    FROM carts c
+                    INNER JOIN products p ON p.is_active = true
+                    WHERE c.status = 'active'
+                    LIMIT %s OFFSET %s
+                    """,
+                    (batch_size, offset),
+                )
                 batch = cur.fetchall()
 
                 if not batch:
-                    logger.info("No more active carts and products found. Stopping.")
-                    break  # Exit the loop if no more data is found
+                    logger.warning("No active carts and products found. Retrying...")
+                    time.sleep(retry_interval)
+                    continue
 
-                logger.info(
-                    f"Fetched {len(batch)} rows from database. Pushing to Kafka."
-                )
+                logger.info(f"Fetched {len(batch)} rows from database. Pushing to Kafka.")
+                yield batch  # Yield batch to produce events
 
-                # Generate and push events for the batch
-                for row in batch:
-                    event = self.generate_cart_item_event_from_row(row)
-                    self.producer.send("cart_items", event)
+                offset += batch_size
 
-                logger.info(f"Pushed {len(batch)} cart item events to Kafka.")
-                offset += batch_size  # Increment offset for the next batch
-                # wait for a while to simulate a real-world scenario: not all carts are updated at the same time (e.g. 15 s)
-                time.sleep(15)
+
 
     def generate_cart_item_event_from_row(self, cart_product: Dict) -> Dict:
         """
@@ -105,8 +98,17 @@ class CartItemProducer:
         """
         now = datetime.now()
 
+        # Randomized quantities to simulate user behavior
         quantity = random.randint(1, 5)
         unit_price = cart_product["price"]
+
+        # Simulating user activity: random item removal
+        removed_probability = random.random()  # Real-world pattern: 30% chance of removal
+        removed_timestamp = (
+            None
+            if removed_probability > 0.3  # Retain item in cart 70% of the time
+            else (now + timedelta(minutes=random.randint(1, 60))).isoformat()
+        )
 
         return {
             "cart_item_id": str(uuid.uuid4()),
@@ -114,23 +116,32 @@ class CartItemProducer:
             "product_id": cart_product["product_id"],
             "quantity": quantity,
             "added_timestamp": now.isoformat(),
-            "removed_timestamp": (
-                None
-                if random.random() > 0.7
-                else (now + timedelta(minutes=random.randint(1, 60))).isoformat()
-            ),
+            "removed_timestamp": removed_timestamp,
             "unit_price": unit_price,
         }
 
+
     def produce_events(self):
+        """
+        Continuously produce cart item events with realistic traffic patterns.
+        """
         try:
             logger.info("Starting to produce cart item events...")
-            self.load_active_carts_and_products(batch_size=1000)
-            logger.info("Finished producing all cart item events.")
+            for batch in self.load_active_carts_and_products(batch_size=100):
+                for row in batch:
+                    event = self.generate_cart_item_event_from_row(row)
+                    try:
+                        self.producer.send("cart_items", event)
+                        logger.info(f"Produced event: {event['cart_item_id']}")
+                    except Exception as e:
+                        logger.error(f"Error sending event to Kafka: {e}")
+                time.sleep(random.uniform(5, 15))  # Mimic user activity delay
+
         except Exception as e:
             logger.error(f"Error producing cart item events: {e}")
         finally:
             self.cleanup()
+
 
     def cleanup(self):
         if self.producer:

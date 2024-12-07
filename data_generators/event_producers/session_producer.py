@@ -90,18 +90,26 @@ class SessionProducer:
                 admin_client.close()
 
 
-    def load_active_users(self) -> List[str]:
-        with self.conn.cursor() as cur:
-            cur.execute(
-                """
-                SELECT user_id
-                FROM users
-                WHERE is_active = true
-                """
-            )
-            users = [row["user_id"] for row in cur.fetchall()]
-            logger.info(f"Loaded {len(users)} active users")
-            return users
+    def load_active_users(self, retry_interval: int = 10) -> List[str]:
+        """
+        Continuously fetch active users. Retries indefinitely if no users are available.
+        """
+        while True:
+            with self.conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT user_id
+                    FROM users
+                    WHERE is_active = true
+                    """
+                )
+                users = [row["user_id"] for row in cur.fetchall()]
+                if users:
+                    logger.info(f"Loaded {len(users)} active users")
+                    return users
+                logger.warning("No active users found. Retrying...")
+                time.sleep(retry_interval)
+
 
     def get_device_info(self) -> Dict[str, str]:
         devices = list(self.device_patterns.keys())
@@ -142,13 +150,20 @@ class SessionProducer:
         }
 
     def generate_session(self) -> Dict:
+        """
+        Generate a single session event with realistic patterns.
+        """
         if not self.active_users:
-            raise ValueError("No active users found in database")
+            self.active_users = self.load_active_users()
 
         now = datetime.now()
-        session_duration = random.randint(1, 120)
 
+        # Adjust session duration based on device type
         device_info = self.get_device_info()
+        session_duration = random.randint(
+            5, 30
+        ) if device_info["device_type"] == "mobile" else random.randint(15, 120)
+
         traffic_info = self.get_traffic_source()
 
         return {
@@ -167,20 +182,36 @@ class SessionProducer:
             "created_at": now.isoformat(),
         }
 
+
     def produce_events(self):
+        """
+        Continuously produce session events with realistic traffic patterns.
+        """
         try:
             i = 0
-            while True:  # Infinite loop for real-world mimic
-                event = self.generate_session()
-                self.producer.send("sessions", event)
+            while True:
+                try:
+                    event = self.generate_session()
+                    self.producer.send("sessions", event)
+                    logger.info(f"Produced event: {event['session_id']}")
+                except Exception as e:
+                    logger.error(f"Error sending session to Kafka: {e}")
+
                 i += 1
                 if i % 100 == 0:
-                    logger.info(f"Produced {i} sessions")
-                time.sleep(random.uniform(0.1, 0.5))  # Simulate user traffic patterns
+                    logger.info(f"Produced {i} session events.")
+
+                # Mimic user traffic with peak patterns
+                current_hour = datetime.now().hour
+                if 18 <= current_hour <= 22:  # Peak hours
+                    time.sleep(random.uniform(0.1, 0.3))
+                else:  # Off-peak hours
+                    time.sleep(random.uniform(0.3, 0.8))
         except Exception as e:
-            logger.error(f"Error producing sessions: {e}")
+            logger.error(f"Error producing session events: {e}")
         finally:
             self.cleanup()
+
 
     def cleanup(self):
         if self.producer:

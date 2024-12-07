@@ -8,7 +8,6 @@ from kafka.admin import NewTopic
 from faker import Faker
 import random
 import logging
-import argparse
 import time
 from typing import Dict, List
 import signal
@@ -58,7 +57,10 @@ class ProductViewProducer:
             if admin_client:
                 admin_client.close()
 
-    def load_active_sessions(self) -> List[Dict]:
+    def load_active_sessions(self, retry_interval: int = 10) -> List[Dict]:
+        """
+        Continuously fetch active user sessions. Retries indefinitely if no sessions are available.
+        """
         while True:
             with self.conn.cursor() as cur:
                 cur.execute(
@@ -72,59 +74,82 @@ class ProductViewProducer:
                 if sessions := cur.fetchall():
                     logger.info(f"Loaded {len(sessions)} active sessions")
                     return sessions
-                logger.warning("No active sessions found. Retrying in 10 seconds...")
-                time.sleep(10)
+                logger.warning("No active sessions found. Retrying...")
+                time.sleep(retry_interval)
 
-    def load_valid_product_ids(self) -> List[str]:
-        """Fetch valid product IDs from the database."""
-        with self.conn.cursor() as cur:
-            cur.execute("SELECT product_id FROM products")
-            products = cur.fetchall()
-            if not products:
-                logger.warning("No valid product IDs found in the database.")
-                return []
-            product_ids = [product["product_id"] for product in products]
-            logger.info(f"Loaded {len(product_ids)} valid product IDs")
-            return product_ids
+
+    def load_valid_product_ids(self, retry_interval: int = 10) -> List[str]:
+        """
+        Continuously fetch valid product IDs. Retries indefinitely if no products are available.
+        """
+        while True:
+            with self.conn.cursor() as cur:
+                cur.execute("SELECT product_id FROM products WHERE is_active = true")
+                if products := cur.fetchall():
+                    product_ids = [product["product_id"] for product in products]
+                    logger.info(f"Loaded {len(product_ids)} valid product IDs")
+                    return product_ids
+                logger.warning("No valid product IDs found. Retrying...")
+                time.sleep(retry_interval)
+
+
 
     def generate_product_view(self) -> Dict:
+        """
+        Generate a single product view event with realistic patterns.
+        """
         if not self.active_sessions:
-            raise ValueError("No active sessions found in the database")
+            raise ValueError("No active sessions available.")
         if not self.valid_product_ids:
-            raise ValueError("No valid product IDs found in the database")
+            raise ValueError("No valid product IDs available.")
 
         now = datetime.now()
         session = random.choice(self.active_sessions)
         product_id = random.choice(self.valid_product_ids)
 
+        source_page = random.choices(
+            ["homepage", "search", "recommendations", "ads"],
+            weights=[50, 30, 15, 5],  # Weighted probabilities
+        )[0]
+
         return {
             "view_id": str(uuid.uuid4()),
             "session_id": session["session_id"],
             "user_id": session["user_id"],
-            "product_id": product_id,  # Use valid product_id
+            "product_id": product_id,
             "view_timestamp": now.isoformat(),
-            "view_duration": random.randint(1, 300),  # View duration in seconds
-            "source_page": random.choice(
-                ["homepage", "search", "recommendations", "ads"]
-            ),
+            "view_duration": random.randint(10, 300),  # View duration in seconds
+            "source_page": source_page,
             "created_at": now.isoformat(),
             "updated_at": now.isoformat(),
         }
 
+
     def produce_events(self):
+        """
+        Continuously produce product view events with realistic traffic patterns.
+        """
         try:
             i = 0
-            while True:  # Infinite loop for real-world mimic
+            while True:
                 event = self.generate_product_view()
-                self.producer.send("product_views", event)
+                try:
+                    self.producer.send("product_views", event)
+                    logger.info(f"Produced event: {event['view_id']}")
+                except Exception as e:
+                    logger.error(f"Error sending event to Kafka: {e}")
+
                 i += 1
                 if i % 100 == 0:
-                    logger.info(f"Produced {i} product view events")
-                time.sleep(random.uniform(0.1, 0.5))  # Simulate user traffic patterns
+                    logger.info(f"Produced {i} product view events.")
+
+                # Simulate user traffic
+                time.sleep(random.uniform(0.1, 0.5))
         except Exception as e:
             logger.error(f"Error producing product view events: {e}")
         finally:
             self.cleanup()
+
 
     def cleanup(self):
         if self.producer:

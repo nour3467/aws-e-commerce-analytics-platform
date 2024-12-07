@@ -60,54 +60,86 @@ class WishlistProducer:
             if admin_client:
                 admin_client.close()
 
-    def load_active_users_and_products(self) -> List[Dict]:
-        """Fetch active users and products for wishlist generation."""
-        with self.conn.cursor() as cur:
-            cur.execute("""
-                SELECT u.user_id, p.product_id
-                FROM users u
-                CROSS JOIN products p
-                WHERE u.is_active = true AND p.is_active = true
-            """)
-            data = cur.fetchall()
-            logger.info(f"Loaded {len(data)} active users and products")
-            return data
+    def load_active_users_and_products(self, batch_size: int = 100, retry_interval: int = 10) -> List[Dict]:
+        """
+        Continuously fetch active users and products in batches to reduce memory usage.
+        Retries indefinitely if no data is found.
+        """
+        offset = 0
+        while True:
+            with self.conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT u.user_id, p.product_id
+                    FROM users u
+                    CROSS JOIN products p
+                    WHERE u.is_active = true AND p.is_active = true
+                    LIMIT %s OFFSET %s
+                    """,
+                    (batch_size, offset),
+                )
+                if data := cur.fetchall():
+                    logger.info(f"Fetched {len(data)} rows of active users and products.")
+                    return data
+                else:
+                    logger.warning("No active users or products found. Retrying...")
+                    time.sleep(retry_interval)
+                    offset = 0  # Reset offset for continuous retry
+
+
 
     def generate_wishlist_event(self) -> Dict:
+        """
+        Generate a single wishlist event with realistic patterns.
+        """
         if not self.active_users_and_products:
-            raise ValueError("No active users or products found in the database")
+            self.active_users_and_products = self.load_active_users_and_products()
 
         now = datetime.now()
         user_product = random.choice(self.active_users_and_products)
+
+        # Simulate a realistic likelihood of removal
+        removed_probability = 0.2  # 20% chance of removal
 
         return {
             'wishlist_id': str(uuid.uuid4()),
             'user_id': user_product['user_id'],
             'product_id': user_product['product_id'],
             'added_timestamp': now.isoformat(),
-            'removed_timestamp': None if random.random() > 0.8 else (now + timedelta(minutes=random.randint(10, 300))).isoformat(),
-            'notes': random.choice([
-                "Favorite item",
-                "Gift idea",
-                "Will buy later",
-                "On sale"
-            ])
+            'removed_timestamp': None if random.random() > removed_probability else (now + timedelta(minutes=random.randint(10, 300))).isoformat(),
+            'notes': random.choices(
+                ["Favorite item", "Gift idea", "Will buy later", "On sale"],
+                weights=[40, 30, 20, 10],  # Weighted probabilities for notes
+            )[0],
         }
 
+
     def produce_events(self):
+        """
+        Continuously produce wishlist events with controlled traffic patterns.
+        """
         try:
             i = 0
-            while True:  # Infinite loop for real-world mimic
-                event = self.generate_wishlist_event()
-                self.producer.send('wishlists', event)
+            while True:
+                try:
+                    event = self.generate_wishlist_event()
+                    self.producer.send('wishlists', event)
+                    logger.info(f"Produced event: {event['wishlist_id']}")
+                except Exception as e:
+                    logger.error(f"Error sending wishlist event to Kafka: {e}")
+
                 i += 1
                 if i % 100 == 0:
-                    logger.info(f"Produced {i} wishlist events")
-                time.sleep(random.uniform(0.1, 0.5))  # Simulate user traffic patterns
+                    logger.info(f"Produced {i} wishlist events.")
+
+                # Mimic user traffic with controlled delays
+                time.sleep(random.uniform(0.2, 1.0))  # Increased delay range
         except Exception as e:
             logger.error(f"Error producing wishlist events: {e}")
         finally:
             self.cleanup()
+
+
 
     def cleanup(self):
         if self.producer:

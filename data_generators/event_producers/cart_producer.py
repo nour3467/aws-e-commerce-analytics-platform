@@ -1,13 +1,12 @@
 import uuid
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from kafka import KafkaProducer, KafkaAdminClient
 from kafka.admin import NewTopic
 import random
 import logging
-import argparse
 import time
 from typing import Dict, List
 import signal
@@ -80,8 +79,11 @@ class CartEventProducer:
             if admin_client:
                 admin_client.close()
 
-    def load_active_sessions_and_users(self) -> List[Dict]:
-        """Fetch active sessions with valid user references. Retries if none found."""
+    def load_active_sessions_and_users(self, batch_size: int = 100, retry_interval: int = 30):
+        """
+        Continuously fetch active sessions and users in batches. Waits and retries if no data is available.
+        """
+        offset = 0
         while True:
             with self.conn.cursor() as cur:
                 cur.execute(
@@ -90,82 +92,76 @@ class CartEventProducer:
                     FROM sessions s
                     INNER JOIN users u ON s.user_id = u.user_id
                     WHERE u.is_active = true
-                    """
+                    LIMIT %s OFFSET %s
+                    """,
+                    (batch_size, offset),
                 )
-                if data := cur.fetchall():
-                    logger.info(f"Loaded {len(data)} active sessions and users")
-                    return data
-                logger.warning(
-                    "No active sessions and users found. Retrying in 10 seconds..."
-                )
-                time.sleep(10)
+                batch = cur.fetchall()
 
-    def generate_cart_event(self) -> Dict:
-        """Generate a single cart event."""
-        if not self.active_sessions_and_users:
-            raise ValueError("No active sessions or users found in the database")
+                if not batch:
+                    logger.warning("No active sessions found. Retrying...")
+                    time.sleep(retry_interval)
+                    continue
 
+                logger.info(f"Fetched {len(batch)} active sessions.")
+                yield batch  # Yield batch for event generation
+
+                offset += batch_size
+
+
+
+    def generate_cart_event(self, session_user: Dict) -> Dict:
+        """
+        Generate a single cart event with real-world patterns using session_user data.
+        """
         now = datetime.now()
-        session_user = random.choice(self.active_sessions_and_users)
+
+        # Simulate realistic cart activity
+        cart_status = random.choices(
+            ["active", "abandoned", "completed"], weights=[60, 30, 10]
+        )[0]
+
+        # Generate cart creation times
+        created_at = now - timedelta(minutes=random.randint(1, 60))
+        updated_at = (
+            created_at + timedelta(minutes=random.randint(1, 30))
+            if cart_status != "active"
+            else now
+        )
 
         return {
             "cart_id": str(uuid.uuid4()),
             "user_id": session_user["user_id"],
             "session_id": session_user["session_id"],
-            "status": random.choice(["active", "abandoned", "completed"]),
-            "created_at": now,
-            "updated_at": now,  # Reflect the schema
+            "status": cart_status,
+            "created_at": created_at,
+            "updated_at": updated_at,
         }
 
-    def insert_cart_event_to_db(self, event: Dict):
-        """Insert a cart event into the database."""
-        try:
-            self.cur.execute(
-                """
-                INSERT INTO carts (cart_id, user_id, session_id, status, created_at, updated_at)
-                VALUES (%s, %s, %s, %s, %s, %s)
-                ON CONFLICT (cart_id) DO UPDATE SET
-                    status = EXCLUDED.status,
-                    updated_at = EXCLUDED.updated_at
-                """,
-                (
-                    event["cart_id"],
-                    event["user_id"],
-                    event["session_id"],
-                    event["status"],
-                    event["created_at"],
-                    event["updated_at"],
-                ),
-            )
-            self.conn.commit()
-            logger.info(
-                f"Inserted or updated cart event {event['cart_id']} into the database."
-            )
-        except Exception as e:
-            logger.error(f"Error inserting cart event into the database: {e}")
 
     def produce_events(self):
-        """Generate and process cart events."""
+        """
+        Continuously produce cart events with realistic traffic patterns.
+        """
         try:
-            i = 0
-            while True:
-                event = self.generate_cart_event()
-
-                # Produce to Kafka
-                self.producer.send("carts", event)
-
-                # Insert into the database
-                self.insert_cart_event_to_db(event)
-
-                i += 1
-                if i % 100 == 0:
-                    logger.info(f"Processed {i} cart events.")
-                time.sleep(random.uniform(0.1, 0.5))  # Simulate user traffic patterns
-
+            logger.info("Starting to produce cart events...")
+            for batch in self.load_active_sessions_and_users(batch_size=100):
+                for session_user in batch:
+                    try:
+                        event = self.generate_cart_event(session_user)
+                        self.producer.send("carts", value=event)
+                        logger.info(f"Produced event: {event['cart_id']}")
+                    except Exception as e:
+                        logger.error(f"Error sending event to Kafka: {e}")
+                time.sleep(random.uniform(1, 5))  # Mimic traffic delay
         except Exception as e:
             logger.error(f"Error producing cart events: {e}")
         finally:
             self.cleanup()
+
+
+
+
 
     def cleanup(self):
         """Cleanup resources."""
