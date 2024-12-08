@@ -14,59 +14,61 @@ import sys
 import os
 from dotenv import load_dotenv
 
+# Configure logging
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
-
-load_dotenv()
+# Load .env only if not running in AWS
+if os.getenv("AWS_EXECUTION_ENV") is None:
+    load_dotenv()
+    logger.info("Running locally, loading environment variables from .env")
+else:
+    logger.info("Running on AWS, using ECS-injected environment variables")
 
 
 class CartItemProducer:
     def __init__(self, kafka_config: Dict, db_config: Dict):
-        self.setup_connections(kafka_config, db_config)
         self.kafka_config = kafka_config
+        self.db_config = db_config
+        self.setup_connections()
         self.setup_kafka_topic()
 
-    def setup_connections(self, kafka_config: Dict, db_config: Dict):
-        self.conn = psycopg2.connect(**db_config, cursor_factory=RealDictCursor)
+    def setup_connections(self):
+        # Database connection
+        self.conn = psycopg2.connect(**self.db_config, cursor_factory=RealDictCursor)
+
+        # Kafka producer connection
         self.producer = KafkaProducer(
-            bootstrap_servers=kafka_config["bootstrap_servers"],
+            bootstrap_servers=self.kafka_config["bootstrap_servers"],
             value_serializer=lambda x: json.dumps(x, default=str).encode("utf-8"),
         )
 
     def setup_kafka_topic(self):
         """Ensure the Kafka topic exists, create it if it doesn't."""
-        admin_client = None
-
+        admin_client = KafkaAdminClient(
+            bootstrap_servers=self.kafka_config["bootstrap_servers"]
+        )
         try:
-            admin_client = KafkaAdminClient(
-                bootstrap_servers=self.kafka_config["bootstrap_servers"]
-            )
-            existing_topics = admin_client.list_topics()
-
-            if "cart_items" not in existing_topics:
+            if "cart_items" not in admin_client.list_topics():
                 logger.info("Creating topic 'cart_items'...")
                 topic = NewTopic(
                     name="cart_items", num_partitions=3, replication_factor=1
                 )
-                admin_client.create_topics(new_topics=[topic], validate_only=False)
+                admin_client.create_topics(new_topics=[topic])
                 logger.info("Topic 'cart_items' created.")
             else:
                 logger.info("Topic 'cart_items' already exists.")
-
         except Exception as e:
-            logger.error(f"Error creating topic 'cart_items': {e}")
-
+            logger.error(f"Error creating Kafka topic: {e}")
         finally:
-            if admin_client:
-                admin_client.close()
+            admin_client.close()
 
-    def load_active_carts_and_products(self, batch_size: int = 100, retry_interval: int = 30):
-        """
-        Continuously fetch active carts and products in batches. Waits and retries if no data is available.
-        """
+    def load_active_carts_and_products(
+        self, batch_size: int = 100, retry_interval: int = 30
+    ):
+        """Fetch active carts and products from the database in batches."""
         offset = 0
         while True:
             with self.conn.cursor() as cur:
@@ -83,35 +85,20 @@ class CartItemProducer:
                 batch = cur.fetchall()
 
                 if not batch:
-                    logger.warning("No active carts and products found. Retrying...")
+                    logger.warning("No active carts found. Retrying...")
                     time.sleep(retry_interval)
                     continue
 
-                logger.info(f"Fetched {len(batch)} rows from database. Pushing to Kafka.")
-                yield batch  # Yield batch to produce events
-
+                yield batch
                 offset += batch_size
 
-
-
-    def generate_cart_item_event_from_row(self, cart_product: Dict) -> Dict:
-        """
-        Generate a cart item event from a database row.
-
-        :param cart_product: A row containing cart and product data.
-        :return: A cart item event dictionary.
-        """
+    def generate_cart_item_event(self, cart_product: Dict) -> Dict:
+        """Generate a cart item event."""
         now = datetime.now()
-
-        # Randomized quantities to simulate user behavior
         quantity = random.randint(1, 5)
-        unit_price = cart_product["price"]
-
-        # Simulating user activity: random item removal
-        removed_probability = random.random()  # Real-world pattern: 30% chance of removal
-        removed_timestamp = (
+        removed = (
             None
-            if removed_probability > 0.3  # Retain item in cart 70% of the time
+            if random.random() > 0.3
             else (now + timedelta(minutes=random.randint(1, 60))).isoformat()
         )
 
@@ -121,32 +108,24 @@ class CartItemProducer:
             "product_id": cart_product["product_id"],
             "quantity": quantity,
             "added_timestamp": now.isoformat(),
-            "removed_timestamp": removed_timestamp,
-            "unit_price": unit_price,
+            "removed_timestamp": removed,
+            "unit_price": cart_product["price"],
         }
 
-
     def produce_events(self):
-        """
-        Continuously produce cart item events with realistic traffic patterns.
-        """
+        """Produce cart item events."""
+        logger.info("Producing cart item events...")
         try:
-            logger.info("Starting to produce cart item events...")
-            for batch in self.load_active_carts_and_products(batch_size=100):
-                for row in batch:
-                    event = self.generate_cart_item_event_from_row(row)
-                    try:
-                        self.producer.send("cart_items", event)
-                        logger.info(f"Produced event: {event['cart_item_id']}")
-                    except Exception as e:
-                        logger.error(f"Error sending event to Kafka: {e}")
-                time.sleep(random.uniform(5, 15))  # Mimic user activity delay
-
+            for batch in self.load_active_carts_and_products():
+                for product in batch:
+                    event = self.generate_cart_item_event(product)
+                    self.producer.send("cart_items", event)
+                    logger.info(f"Produced event: {event['cart_item_id']}")
+                time.sleep(random.uniform(1, 3))
         except Exception as e:
-            logger.error(f"Error producing cart item events: {e}")
+            logger.error(f"Error producing events: {e}")
         finally:
             self.cleanup()
-
 
     def cleanup(self):
         if self.producer:
@@ -159,23 +138,22 @@ class CartItemProducer:
 if __name__ == "__main__":
 
     def signal_handler(sig, frame):
-        logger.info("Graceful shutdown initiated...")
+        logger.info("Graceful shutdown...")
         sys.exit(0)
 
     signal.signal(signal.SIGINT, signal_handler)
 
+    # Database configuration
     db_config = {
-        "dbname": os.getenv("DB_NAME", "ecommerce"),
-        "user": os.getenv("DB_USER", "postgres"),
-        "password": os.getenv("DB_PASSWORD", "admin_password"),
-        "host": os.getenv("DB_HOST", "localhost"),
+        "dbname": os.getenv("DB_NAME"),
+        "user": os.getenv("DB_USER"),
+        "password": os.getenv("DB_PASSWORD"),
+        "host": os.getenv("DB_HOST"),
     }
 
-
+    # Kafka configuration
     kafka_config = {
-        "bootstrap_servers": os.getenv(
-            "KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"
-        ).split(","),
+        "bootstrap_servers": os.getenv("KAFKA_BOOTSTRAP_SERVERS").split(","),
     }
 
     producer = CartItemProducer(kafka_config, db_config)

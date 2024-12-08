@@ -19,7 +19,11 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-load_dotenv()
+if os.getenv("AWS_EXECUTION_ENV") is None:
+    load_dotenv()
+    logger.info("Running locally, loading environment variables from .env")
+else:
+    logger.info("Running on AWS, using ECS-injected environment variables")
 
 
 class SupportTicketProducer:
