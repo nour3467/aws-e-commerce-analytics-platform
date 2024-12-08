@@ -1,6 +1,26 @@
 import json
 import psycopg2
 from kafka import KafkaConsumer
+import os
+from dotenv import load_dotenv
+
+
+# Load environment variables
+load_dotenv()
+
+# Configuration from environment variables
+db_config = {
+    "dbname": os.getenv("DB_NAME", "ecommerce"),
+    "user": os.getenv("DB_USER", "postgres"),
+    "password": os.getenv("DB_PASSWORD", "admin_password"),
+    "host": os.getenv("DB_HOST", "postgres"),
+}
+
+kafka_config = {
+    "bootstrap_servers": os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092").split(
+        ","
+    ),
+}
 
 
 class WishlistsConsumer:
@@ -9,17 +29,12 @@ class WishlistsConsumer:
             # Kafka Consumer Setup
             self.consumer = KafkaConsumer(
                 "wishlists",  # Topic name
-                bootstrap_servers=["kafka:29092"],
+                bootstrap_servers=kafka_config["bootstrap_servers"],
                 value_deserializer=lambda m: json.loads(m.decode("utf-8")),
             )
 
             # PostgreSQL Connection Setup
-            self.conn = psycopg2.connect(
-                dbname="ecommerce",
-                user="postgres",
-                password="admin_password",
-                host="postgres",  # Use host.docker.internal if necessary
-            )
+            self.conn = psycopg2.connect(**db_config)
             self.cur = self.conn.cursor()
 
             # Ensure Table Exists

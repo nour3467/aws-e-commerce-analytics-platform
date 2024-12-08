@@ -11,12 +11,16 @@ import time
 from typing import Dict, List
 import signal
 import sys
+import os
+from dotenv import load_dotenv
 
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+load_dotenv()
 
 class TicketMessageProducer:
     def __init__(self, kafka_config: Dict, db_config: Dict):
@@ -160,13 +164,15 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal_handler)
 
     db_config = {
-        "dbname": "ecommerce",
-        "user": "postgres",
-        "password": "admin_password",
-        "host": "postgres",
+        "dbname": os.getenv("DB_NAME", "ecommerce"),
+        "user": os.getenv("DB_USER", "postgres"),
+        "password": os.getenv("DB_PASSWORD", "admin_password"),
+        "host": os.getenv("DB_HOST", "localhost"),
     }
 
-    kafka_config = {"bootstrap_servers": ["kafka:29092"]}
+    kafka_config = {
+        "bootstrap_servers": os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092").split(","),
+    }
 
     producer = TicketMessageProducer(kafka_config, db_config)
     producer.produce_events()

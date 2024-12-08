@@ -12,7 +12,7 @@ PIP := $(VENV)/bin/pip
 # Targets
 .PHONY: all setup services generate_products generate_users generate_demo_data
 
-all: setup services generate_demo_data
+all: setup services generate_categories generate_products generate_users generate_users_demo events_producers events_consumers
 
 setup:
 	@echo "Setting up environment..."
