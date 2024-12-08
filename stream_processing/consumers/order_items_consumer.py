@@ -3,10 +3,21 @@ import psycopg2
 from kafka import KafkaConsumer
 import os
 from dotenv import load_dotenv
+import logging
 
 
-# Load environment variables
-load_dotenv()
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+# Load .env only if not running in AWS
+if os.getenv("AWS_EXECUTION_ENV") is None:
+    load_dotenv()
+    logger.info("Running locally, loading environment variables from .env")
+else:
+    logger.info("Running on AWS, using ECS-injected environment variables")
 
 # Configuration from environment variables
 db_config = {
