@@ -1,35 +1,61 @@
-name: Deploy to AWS
+name: CI/CD for Producers and Consumers
 
 on:
   push:
     paths:
-      - "**/*.py"
-      - "Dockerfile.produce"
-      - "Dockerfile.consume"
+      - "event_producers/**"
+      - "consumers/**"
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        script_type: [producer, consumer]
+        script_name: [
+          "cart",
+          "cart_items",
+          "order",
+          "order_items",
+          "product_view",
+          "session",
+          "support_tickets",
+          "ticket_messages",
+          "wishlists"
+        ]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Login to Amazon ECR
-      uses: aws-actions/amazon-ecr-login@v1
+      # Step 2: Login to Amazon ECR
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build and Push Producer Image
-      run: |
-        docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.PRODUCER_REPO }}:latest -f Dockerfile.produce .
-        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.PRODUCER_REPO }}:latest
+      # Step 3: Set the image name dynamically
+      - name: Set Docker image name
+        run: echo "IMAGE_NAME=${{ matrix.script_name }}-${{ matrix.script_type }}" >> $GITHUB_ENV
 
-    - name: Build and Push Consumer Image
-      run: |
-        docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.CONSUMER_REPO }}:latest -f Dockerfile.consume .
-        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.CONSUMER_REPO }}:latest
+      # Step 4: Build the Docker image
+      - name: Build Docker image
+        run: |
+          docker build -f Dockerfile.${{ matrix.script_type }}.prod \
+            --build-arg ${{
+              matrix.script_type == 'producer' && 'PRODUCER_SCRIPT' || 'CONSUMER_SCRIPT'
+            }}=${{ matrix.script_name }}_${{ matrix.script_type }}.py \
+            -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:latest .
 
-    - name: Deploy with Terraform
-      run: |
-        cd infrastructure/aws/terraform
-        terraform init
-        terraform apply -auto-approve
+      # Step 5: Push the Docker image to ECR
+      - name: Push Docker image to ECR
+        run: |
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:latest
+
+      # Step 6: Deploy to ECS
+      - name: Deploy to ECS
+        run: |
+          aws ecs update-service \
+            --cluster ${CLUSTER_NAME} \
+            --service $IMAGE_NAME-service \
+            --force-new-deployment

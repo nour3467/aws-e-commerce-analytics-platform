@@ -1,0 +1,20 @@
+# Base image
+FROM python:3.9-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the producer code
+COPY data_generators/event_producers .
+
+# Environment variables for script and Kafka configuration
+ARG PRODUCER_SCRIPT
+ENV PRODUCER_SCRIPT=${PRODUCER_SCRIPT}
+ENV KAFKA_BOOTSTRAP_SERVERS=""
+
+# Command to dynamically run the specified producer script
+CMD ["sh", "-c", "python ${PRODUCER_SCRIPT}"]

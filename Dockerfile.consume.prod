@@ -1,0 +1,23 @@
+# Base image
+FROM python:3.9-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the consumer code
+COPY stream_processing/consumers .
+
+# Environment variables for script, Kafka, and RDS configuration
+ARG CONSUMER_SCRIPT
+ENV CONSUMER_SCRIPT=${CONSUMER_SCRIPT}
+ENV KAFKA_BOOTSTRAP_SERVERS=""
+ENV RDS_HOST=""
+ENV RDS_USER=""
+ENV RDS_PASSWORD=""
+
+# Command to dynamically run the specified consumer script
+CMD ["sh", "-c", "python ${CONSUMER_SCRIPT}"]

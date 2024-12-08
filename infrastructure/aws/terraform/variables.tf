@@ -1,23 +1,33 @@
-variable "region" {
-  default = "us-east-1"
+# Project Name
+variable "project_name" {
+  description = "Project name for resource naming"
+  type        = string
 }
 
-variable "project_name" {
-  default = "ecommerce-analytics-platform"
+# Networking Variables
+variable "public_subnets" {
+  description = "List of public subnet IDs"
+  type        = list(string)
+}
+
+variable "private_subnets" {
+  description = "List of private subnet IDs"
+  type        = list(string)
+}
+
+# RDS Variables
+variable "db_name" {
+  description = "The name of the database to be created in RDS"
+  type        = string
 }
 
 variable "db_username" {
-  default = "postgres"
+  description = "The username for the RDS database"
+  type        = string
 }
 
 variable "db_password" {
-  default = "admin_password"
-}
-
-variable "db_name" {
-  default = "ecommerce"
-}
-
-variable "instance_type" {
-  default = "t2.micro"
+  description = "The password for the RDS database"
+  type        = string
+  sensitive   = true
 }
