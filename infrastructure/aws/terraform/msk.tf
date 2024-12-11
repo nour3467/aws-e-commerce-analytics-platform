@@ -1,10 +1,13 @@
 resource "aws_msk_cluster" "kafka_cluster" {
   cluster_name           = "${var.project_name}-kafka-cluster"
   kafka_version          = "2.8.1"
-  number_of_broker_nodes = 3
+  number_of_broker_nodes = 2
   broker_node_group_info {
     instance_type   = "kafka.m5.large"
-    client_subnets  = var.private_subnets
+    client_subnets  = [
+      aws_subnet.private_subnet_a.id,
+      aws_subnet.private_subnet_b.id
+    ]
     security_groups = [aws_security_group.ecs_security_group.id]
   }
 }

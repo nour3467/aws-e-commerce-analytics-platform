@@ -3,62 +3,90 @@
 # Exit on errors
 set -e
 
-# Load variables into the shell
-set -a
-source .env
-set +a
+# Step 1: Navigate to the script's directory
+CURRENT_DIR=$(realpath "$(dirname "$0")")
+ENV_FILE="$CURRENT_DIR/../../.env.prod"
 
-# Load sensitive information from environment variables
-DB_NAME=${DB_NAME:-ecommerce}
-DB_USER=${DB_USER:-postgres}
-DB_PASSWORD=${DB_PASSWORD}
-DB_HOST=${DB_HOST:-localhost}
-LOCAL_DB_PORT=${LOCAL_DB_PORT:-5432}
-RDS_DB_PORT=${RDS_DB_PORT:-5432}
-DUMP_DIR=${DUMP_DIR:-/tmp}
-DUMP_FILE="$DUMP_DIR/db_backup.sql"
+# Step 2: Load environment variables
+if [ -f "$ENV_FILE" ]; then
+    echo "Loading environment variables from $ENV_FILE..."
+    set -o allexport
+    source "$ENV_FILE"
+    set +o allexport
+else
+    echo "$ENV_FILE not found. Exiting..."
+    exit 1
+fi
 
-# Step 1: Retrieve RDS Endpoint
-echo "Retrieving RDS endpoint from Terraform..."
-cd ../infrastructure/aws/terraform
+# Step 3: Check if PostgreSQL is running
+echo "Checking PostgreSQL status..."
+if ! docker ps | grep -q local_postgres; then
+    echo "Starting required PostgreSQL..."
+    cd "$CURRENT_DIR/../../"
+    echo "Current directory: $(pwd)"
+    make postgres
+fi
+
+# Step 4: Retrieve AWS DMS Configuration
+echo "Setting up AWS DMS for migration..."
+cd "$CURRENT_DIR/../../infrastructure/aws/terraform"
+
+# Ensure Terraform outputs exist
 RDS_ENDPOINT=$(terraform output -raw rds_endpoint)
-if [ -z "$RDS_ENDPOINT" ]; then
-  echo "Failed to retrieve RDS endpoint. Ensure Terraform outputs are configured."
-  exit 1
+RDS_USERNAME=$(terraform output -raw rds_username)
+RDS_DB_NAME=$(terraform output -raw rds_db_name)
+DMS_TASK_ARN=$(terraform output -raw dms_task_arn)
+if [ -z "$RDS_ENDPOINT" ] || [ -z "$RDS_USERNAME" ] || [ -z "$RDS_DB_NAME" ] || [ -z "$DMS_TASK_ARN" ]; then
+    echo "Failed to retrieve Terraform outputs. Ensure outputs are configured correctly."
+    exit 1
 fi
+
 echo "RDS Endpoint: $RDS_ENDPOINT"
+echo "RDS DB Name: $RDS_DB_NAME"
+echo "RDS Username: $RDS_USERNAME"
+echo "DMS Task ARN: $DMS_TASK_ARN"
 
-# Step 2: Export Local PostgreSQL Database
-echo "Exporting local database..."
-PGPASSWORD=$DB_PASSWORD pg_dump -h $DB_HOST -p $LOCAL_DB_PORT -U $DB_USER $DB_NAME > $DUMP_FILE
-if [ $? -ne 0 ]; then
-  echo "Failed to export the database. Check local PostgreSQL connection and credentials."
-  exit 1
+# Wait for PostgreSQL to be ready
+echo "Waiting for PostgreSQL to be ready..."
+sleep 10
+
+# Step 5: Run AWS DMS Task
+echo "Starting DMS Task for migration..."
+aws dms start-replication-task --replication-task-arn "$DMS_TASK_ARN" --start-replication-task-type reload-target
+
+# Monitor the task status
+echo "Monitoring DMS Task status..."
+STATUS="STARTING"
+while [ "$STATUS" != "STOPPED" ] && [ "$STATUS" != "FAILED" ]; do
+    STATUS=$(aws dms describe-replication-tasks --filters Name=replication-task-arn,Values="$DMS_TASK_ARN" --query "ReplicationTasks[0].Status" --output text)
+    echo "Current status: $STATUS"
+    sleep 10
+done
+
+if [ "$STATUS" == "FAILED" ]; then
+    echo "DMS Task failed. Check AWS DMS logs for details."
+    exit 1
 fi
-echo "Database exported successfully to $DUMP_FILE."
 
-# Step 3: Restore Database to Amazon RDS
-echo "Restoring database to Amazon RDS..."
-PGPASSWORD=$DB_PASSWORD psql -h $RDS_ENDPOINT -p $RDS_DB_PORT -U $DB_USER -d $DB_NAME -f $DUMP_FILE
-if [ $? -ne 0 ]; then
-  echo "Failed to restore the database to RDS. Check RDS connection and credentials."
-  exit 1
-fi
-echo "Database restored successfully to Amazon RDS."
+echo "DMS Task completed successfully."
 
-# Step 4: Verify Migration
+# Step 6: Verify Migration
 echo "Verifying database migration..."
-PGPASSWORD=$DB_PASSWORD psql -h $RDS_ENDPOINT -p $RDS_DB_PORT -U $DB_USER -d $DB_NAME -c "\dt"
+PGPASSWORD=$TF_VAR_db_password psql -h "$RDS_ENDPOINT" -p "$RDS_DB_PORT" -U "$RDS_USERNAME" -d "$RDS_DB_NAME" -c "\dt"
 if [ $? -ne 0 ]; then
-  echo "Failed to verify the database schema. Migration might be incomplete."
-  exit 1
+    echo "Failed to verify the database schema. Migration might be incomplete."
+    exit 1
 fi
-
-# Optional: Check table row counts
-PGPASSWORD=$DB_PASSWORD psql -h $RDS_ENDPOINT -p $RDS_DB_PORT -U $DB_USER -d $DB_NAME -c "SELECT table_name, n_live_tup FROM pg_stat_user_tables ORDER BY n_live_tup DESC;"
 echo "Database migration verified successfully."
 
-# Step 5: Cleanup
-echo "Cleaning up..."
-rm $DUMP_FILE
+# Optional: Check table row counts
+PGPASSWORD=$TF_VAR_db_password psql -h "$RDS_ENDPOINT" -p "$RDS_DB_PORT" -U "$RDS_USERNAME" -d "$RDS_DB_NAME" -c "SELECT table_name, n_live_tup FROM pg_stat_user_tables ORDER BY n_live_tup DESC;"
+echo "Table row counts verified successfully."
+
+# Step 7: Stop Services
+echo "Stopping services using Docker Compose..."
+cd "$CURRENT_DIR/../../"
+docker-compose down
+
+# Step 8: Cleanup
 echo "Migration process completed successfully!"

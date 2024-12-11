@@ -1,0 +1,3829 @@
+{
+  "version": 4,
+  "terraform_version": "1.10.1",
+  "serial": 143,
+  "lineage": "d33decc9-8ded-ef14-661d-5d1277a58f78",
+  "outputs": {
+    "ecr_consumer_repo_urls": {
+      "value": {
+        "cart_consumer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_consumer-repo",
+        "cart_items_consumer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_items_consumer-repo",
+        "order_consumer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_consumer-repo",
+        "order_items_consumer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_items_consumer-repo",
+        "product_view_consumer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-product_view_consumer-repo",
+        "session_consumer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-session_consumer-repo",
+        "support_tickets_consumer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-support_tickets_consumer-repo",
+        "ticket_messages_consumer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-ticket_messages_consumer-repo",
+        "wishlists_consumer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-wishlists_consumer-repo"
+      },
+      "type": [
+        "object",
+        {
+          "cart_consumer": "string",
+          "cart_items_consumer": "string",
+          "order_consumer": "string",
+          "order_items_consumer": "string",
+          "product_view_consumer": "string",
+          "session_consumer": "string",
+          "support_tickets_consumer": "string",
+          "ticket_messages_consumer": "string",
+          "wishlists_consumer": "string"
+        }
+      ]
+    },
+    "ecr_producer_repo_urls": {
+      "value": {
+        "cart_items_producer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_items_producer-repo",
+        "cart_producer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_producer-repo",
+        "order_items_producer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_items_producer-repo",
+        "order_producer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_producer-repo",
+        "product_view_producer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-product_view_producer-repo",
+        "session_producer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-session_producer-repo",
+        "support_tickets_producer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-support_tickets_producer-repo",
+        "ticket_messages_producer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-ticket_messages_producer-repo",
+        "wishlists_producer": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-wishlists_producer-repo"
+      },
+      "type": [
+        "object",
+        {
+          "cart_items_producer": "string",
+          "cart_producer": "string",
+          "order_items_producer": "string",
+          "order_producer": "string",
+          "product_view_producer": "string",
+          "session_producer": "string",
+          "support_tickets_producer": "string",
+          "ticket_messages_producer": "string",
+          "wishlists_producer": "string"
+        }
+      ]
+    },
+    "ecs_consumers_services": {
+      "value": {
+        "cart_consumer": "aws-ecommerce-platform-cart_consumer-service",
+        "cart_items_consumer": "aws-ecommerce-platform-cart_items_consumer-service",
+        "order_consumer": "aws-ecommerce-platform-order_consumer-service",
+        "order_items_consumer": "aws-ecommerce-platform-order_items_consumer-service",
+        "product_view_consumer": "aws-ecommerce-platform-product_view_consumer-service",
+        "session_consumer": "aws-ecommerce-platform-session_consumer-service",
+        "support_tickets_consumer": "aws-ecommerce-platform-support_tickets_consumer-service",
+        "ticket_messages_consumer": "aws-ecommerce-platform-ticket_messages_consumer-service",
+        "wishlists_consumer": "aws-ecommerce-platform-wishlists_consumer-service"
+      },
+      "type": [
+        "object",
+        {
+          "cart_consumer": "string",
+          "cart_items_consumer": "string",
+          "order_consumer": "string",
+          "order_items_consumer": "string",
+          "product_view_consumer": "string",
+          "session_consumer": "string",
+          "support_tickets_consumer": "string",
+          "ticket_messages_consumer": "string",
+          "wishlists_consumer": "string"
+        }
+      ]
+    },
+    "ecs_producers_services": {
+      "value": {
+        "cart_items_producer": "aws-ecommerce-platform-cart_items_producer-service",
+        "cart_producer": "aws-ecommerce-platform-cart_producer-service",
+        "order_items_producer": "aws-ecommerce-platform-order_items_producer-service",
+        "order_producer": "aws-ecommerce-platform-order_producer-service",
+        "product_view_producer": "aws-ecommerce-platform-product_view_producer-service",
+        "session_producer": "aws-ecommerce-platform-session_producer-service",
+        "support_tickets_producer": "aws-ecommerce-platform-support_tickets_producer-service",
+        "ticket_messages_producer": "aws-ecommerce-platform-ticket_messages_producer-service",
+        "wishlists_producer": "aws-ecommerce-platform-wishlists_producer-service"
+      },
+      "type": [
+        "object",
+        {
+          "cart_items_producer": "string",
+          "cart_producer": "string",
+          "order_items_producer": "string",
+          "order_producer": "string",
+          "product_view_producer": "string",
+          "session_producer": "string",
+          "support_tickets_producer": "string",
+          "ticket_messages_producer": "string",
+          "wishlists_producer": "string"
+        }
+      ]
+    },
+    "ecs_security_group_id": {
+      "value": "sg-02ef7ab89989c86a6",
+      "type": "string"
+    },
+    "kafka_bootstrap_servers": {
+      "value": "",
+      "type": "string"
+    },
+    "private_subnet_ids": {
+      "value": [
+        "subnet-01fd268117e67b839",
+        "subnet-00629e08a31b77018"
+      ],
+      "type": [
+        "tuple",
+        [
+          "string",
+          "string"
+        ]
+      ]
+    },
+    "public_subnet_ids": {
+      "value": [
+        "subnet-0d158efbecd46622c"
+      ],
+      "type": [
+        "tuple",
+        [
+          "string"
+        ]
+      ]
+    },
+    "rds_db_name": {
+      "value": "ecommerce",
+      "type": "string"
+    },
+    "rds_endpoint": {
+      "value": "terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com:5432",
+      "type": "string"
+    },
+    "rds_username": {
+      "value": "db_admin",
+      "type": "string"
+    },
+    "vpc_id": {
+      "value": "vpc-0931d328ed2285f12",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "aws_db_instance",
+      "name": "analytics_rds",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "address": "terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com",
+            "allocated_storage": 20,
+            "allow_major_version_upgrade": null,
+            "apply_immediately": false,
+            "arn": "arn:aws:rds:us-east-1:123392663371:db:terraform-20241210194109986600000002",
+            "auto_minor_version_upgrade": true,
+            "availability_zone": "us-east-1a",
+            "backup_retention_period": 0,
+            "backup_target": "region",
+            "backup_window": "08:24-08:54",
+            "blue_green_update": [],
+            "ca_cert_identifier": "rds-ca-rsa2048-g1",
+            "character_set_name": "",
+            "copy_tags_to_snapshot": false,
+            "custom_iam_instance_profile": "",
+            "customer_owned_ip_enabled": false,
+            "db_name": "ecommerce",
+            "db_subnet_group_name": "default",
+            "dedicated_log_volume": false,
+            "delete_automated_backups": true,
+            "deletion_protection": false,
+            "domain": "",
+            "domain_auth_secret_arn": "",
+            "domain_dns_ips": [],
+            "domain_fqdn": "",
+            "domain_iam_role_name": "",
+            "domain_ou": "",
+            "enabled_cloudwatch_logs_exports": [],
+            "endpoint": "terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com:5432",
+            "engine": "postgres",
+            "engine_lifecycle_support": "open-source-rds-extended-support",
+            "engine_version": "14",
+            "engine_version_actual": "14.12",
+            "final_snapshot_identifier": null,
+            "hosted_zone_id": "Z2R2ITUGPM61AM",
+            "iam_database_authentication_enabled": false,
+            "id": "db-G73L6MY6RCPOIWDDOZNAELYW3M",
+            "identifier": "terraform-20241210194109986600000002",
+            "identifier_prefix": "terraform-",
+            "instance_class": "db.t3.micro",
+            "iops": 0,
+            "kms_key_id": "",
+            "latest_restorable_time": "",
+            "license_model": "postgresql-license",
+            "listener_endpoint": [],
+            "maintenance_window": "thu:04:18-thu:04:48",
+            "manage_master_user_password": null,
+            "master_user_secret": [],
+            "master_user_secret_kms_key_id": null,
+            "max_allocated_storage": 0,
+            "monitoring_interval": 0,
+            "monitoring_role_arn": "",
+            "multi_az": false,
+            "nchar_character_set_name": "",
+            "network_type": "IPV4",
+            "option_group_name": "default:postgres-14",
+            "parameter_group_name": "default.postgres14",
+            "password": "secureDBPassword123",
+            "performance_insights_enabled": false,
+            "performance_insights_kms_key_id": "",
+            "performance_insights_retention_period": 0,
+            "port": 5432,
+            "publicly_accessible": true,
+            "replica_mode": "",
+            "replicas": [],
+            "replicate_source_db": "",
+            "resource_id": "db-G73L6MY6RCPOIWDDOZNAELYW3M",
+            "restore_to_point_in_time": [],
+            "s3_import": [],
+            "skip_final_snapshot": true,
+            "snapshot_identifier": null,
+            "status": "available",
+            "storage_encrypted": false,
+            "storage_throughput": 0,
+            "storage_type": "gp2",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null,
+            "timezone": "",
+            "upgrade_storage_config": null,
+            "username": "db_admin",
+            "vpc_security_group_ids": [
+              "sg-0ed3520005d0b5aa0"
+            ]
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "password"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInVwZGF0ZSI6NDgwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMiJ9",
+          "dependencies": [
+            "aws_security_group.rds_sg"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_ecr_lifecycle_policy",
+      "name": "consumer_policies",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "cart_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-cart_consumer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-cart_consumer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.consumers"
+          ]
+        },
+        {
+          "index_key": "cart_items_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-cart_items_consumer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-cart_items_consumer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.consumers"
+          ]
+        },
+        {
+          "index_key": "order_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-order_consumer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-order_consumer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.consumers"
+          ]
+        },
+        {
+          "index_key": "order_items_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-order_items_consumer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-order_items_consumer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.consumers"
+          ]
+        },
+        {
+          "index_key": "product_view_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-product_view_consumer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-product_view_consumer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.consumers"
+          ]
+        },
+        {
+          "index_key": "session_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-session_consumer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-session_consumer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.consumers"
+          ]
+        },
+        {
+          "index_key": "support_tickets_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-support_tickets_consumer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-support_tickets_consumer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.consumers"
+          ]
+        },
+        {
+          "index_key": "ticket_messages_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-ticket_messages_consumer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-ticket_messages_consumer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.consumers"
+          ]
+        },
+        {
+          "index_key": "wishlists_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-wishlists_consumer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-wishlists_consumer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.consumers"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_ecr_lifecycle_policy",
+      "name": "producer_policies",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "cart_items_producer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-cart_items_producer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-cart_items_producer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.producers"
+          ]
+        },
+        {
+          "index_key": "cart_producer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-cart_producer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-cart_producer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.producers"
+          ]
+        },
+        {
+          "index_key": "order_items_producer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-order_items_producer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-order_items_producer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.producers"
+          ]
+        },
+        {
+          "index_key": "order_producer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-order_producer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-order_producer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.producers"
+          ]
+        },
+        {
+          "index_key": "product_view_producer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-product_view_producer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-product_view_producer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.producers"
+          ]
+        },
+        {
+          "index_key": "session_producer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-session_producer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-session_producer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.producers"
+          ]
+        },
+        {
+          "index_key": "support_tickets_producer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-support_tickets_producer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-support_tickets_producer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.producers"
+          ]
+        },
+        {
+          "index_key": "ticket_messages_producer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-ticket_messages_producer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-ticket_messages_producer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.producers"
+          ]
+        },
+        {
+          "index_key": "wishlists_producer",
+          "schema_version": 0,
+          "attributes": {
+            "id": "aws-ecommerce-platform-wishlists_producer-repo",
+            "policy": "{\"rules\":[{\"action\":{\"type\":\"expire\"},\"description\":\"Expire untagged images after 30 days\",\"rulePriority\":1,\"selection\":{\"countNumber\":10,\"countType\":\"imageCountMoreThan\",\"tagStatus\":\"untagged\"}}]}",
+            "registry_id": "123392663371",
+            "repository": "aws-ecommerce-platform-wishlists_producer-repo"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_ecr_repository.producers"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_ecr_repository",
+      "name": "consumers",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "cart_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-cart_consumer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-cart_consumer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-cart_consumer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_consumer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "cart_items_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-cart_items_consumer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-cart_items_consumer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-cart_items_consumer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_items_consumer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "order_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-order_consumer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-order_consumer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-order_consumer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_consumer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "order_items_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-order_items_consumer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-order_items_consumer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-order_items_consumer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_items_consumer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "product_view_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-product_view_consumer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-product_view_consumer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-product_view_consumer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-product_view_consumer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "session_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-session_consumer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-session_consumer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-session_consumer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-session_consumer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "support_tickets_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-support_tickets_consumer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-support_tickets_consumer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-support_tickets_consumer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-support_tickets_consumer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "ticket_messages_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-ticket_messages_consumer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-ticket_messages_consumer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-ticket_messages_consumer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-ticket_messages_consumer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "wishlists_consumer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-wishlists_consumer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-wishlists_consumer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-wishlists_consumer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-wishlists_consumer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_ecr_repository",
+      "name": "producers",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "cart_items_producer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-cart_items_producer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-cart_items_producer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-cart_items_producer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_items_producer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "cart_producer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-cart_producer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-cart_producer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-cart_producer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_producer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "order_items_producer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-order_items_producer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-order_items_producer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-order_items_producer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_items_producer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "order_producer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-order_producer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-order_producer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-order_producer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_producer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "product_view_producer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-product_view_producer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-product_view_producer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-product_view_producer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-product_view_producer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "session_producer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-session_producer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-session_producer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-session_producer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-session_producer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "support_tickets_producer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-support_tickets_producer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-support_tickets_producer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-support_tickets_producer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-support_tickets_producer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "ticket_messages_producer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-ticket_messages_producer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-ticket_messages_producer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-ticket_messages_producer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-ticket_messages_producer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "wishlists_producer",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecr:us-east-1:123392663371:repository/aws-ecommerce-platform-wishlists_producer-repo",
+            "encryption_configuration": [
+              {
+                "encryption_type": "AES256",
+                "kms_key": ""
+              }
+            ],
+            "force_delete": null,
+            "id": "aws-ecommerce-platform-wishlists_producer-repo",
+            "image_scanning_configuration": [
+              {
+                "scan_on_push": false
+              }
+            ],
+            "image_tag_mutability": "MUTABLE",
+            "name": "aws-ecommerce-platform-wishlists_producer-repo",
+            "registry_id": "123392663371",
+            "repository_url": "123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-wishlists_producer-repo",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_ecs_cluster",
+      "name": "ecs_cluster",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "configuration": [],
+            "id": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "name": "aws-ecommerce-platform-ecs-cluster",
+            "service_connect_defaults": [],
+            "setting": [
+              {
+                "name": "containerInsights",
+                "value": "disabled"
+              }
+            ],
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_ecs_service",
+      "name": "consumers",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "cart_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-cart_consumer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-cart_consumer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_consumer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "cart_items_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-cart_items_consumer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-cart_items_consumer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_items_consumer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "order_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-order_consumer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-order_consumer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_consumer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "order_items_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-order_items_consumer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-order_items_consumer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_items_consumer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "product_view_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-product_view_consumer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-product_view_consumer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-product_view_consumer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "session_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-session_consumer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-session_consumer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-session_consumer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "support_tickets_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-support_tickets_consumer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-support_tickets_consumer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-support_tickets_consumer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "ticket_messages_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-ticket_messages_consumer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-ticket_messages_consumer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-ticket_messages_consumer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "wishlists_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-wishlists_consumer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-wishlists_consumer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-wishlists_consumer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_ecs_service",
+      "name": "producers",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "cart_items_producer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-cart_items_producer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-cart_items_producer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_items_producer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "cart_producer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-cart_producer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-cart_producer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_producer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "order_items_producer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-order_items_producer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-order_items_producer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_items_producer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "order_producer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-order_producer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-order_producer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_producer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "product_view_producer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-product_view_producer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-product_view_producer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-product_view_producer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "session_producer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-session_producer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-session_producer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-session_producer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "support_tickets_producer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-support_tickets_producer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-support_tickets_producer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-support_tickets_producer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "ticket_messages_producer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-ticket_messages_producer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-ticket_messages_producer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-ticket_messages_producer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "wishlists_producer",
+          "schema_version": 1,
+          "attributes": {
+            "alarms": [],
+            "availability_zone_rebalancing": "DISABLED",
+            "capacity_provider_strategy": [],
+            "cluster": "arn:aws:ecs:us-east-1:123392663371:cluster/aws-ecommerce-platform-ecs-cluster",
+            "deployment_circuit_breaker": [
+              {
+                "enable": false,
+                "rollback": false
+              }
+            ],
+            "deployment_controller": [
+              {
+                "type": "ECS"
+              }
+            ],
+            "deployment_maximum_percent": 200,
+            "deployment_minimum_healthy_percent": 100,
+            "desired_count": 1,
+            "enable_ecs_managed_tags": false,
+            "enable_execute_command": false,
+            "force_delete": null,
+            "force_new_deployment": null,
+            "health_check_grace_period_seconds": 0,
+            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "id": "arn:aws:ecs:us-east-1:123392663371:service/aws-ecommerce-platform-ecs-cluster/aws-ecommerce-platform-wishlists_producer-service",
+            "launch_type": "FARGATE",
+            "load_balancer": [],
+            "name": "aws-ecommerce-platform-wishlists_producer-service",
+            "network_configuration": [
+              {
+                "assign_public_ip": false,
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ]
+              }
+            ],
+            "ordered_placement_strategy": [],
+            "placement_constraints": [],
+            "platform_version": "LATEST",
+            "propagate_tags": "NONE",
+            "scheduling_strategy": "REPLICA",
+            "service_connect_configuration": [],
+            "service_registries": [],
+            "tags": {},
+            "tags_all": {},
+            "task_definition": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-wishlists_producer-task:1",
+            "timeouts": null,
+            "triggers": {},
+            "volume_configuration": [],
+            "vpc_lattice_configurations": [],
+            "wait_for_steady_state": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_ecs_cluster.ecs_cluster",
+            "aws_ecs_task_definition.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_ecs_task_definition",
+      "name": "consumers",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "cart_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_consumer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_consumer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"RDS_HOST\",\"value\":\"terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com:5432\"},{\"name\":\"RDS_PASSWORD\",\"value\":\"secureDBPassword123\"},{\"name\":\"RDS_USER\",\"value\":\"admin\"},{\"name\":\"TOPIC_NAME\",\"value\":\"cart_consumer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_consumer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"cart_consumer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-cart_consumer-task",
+            "id": "aws-ecommerce-platform-cart_consumer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "container_definitions"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "cart_items_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_items_consumer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_items_consumer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"RDS_HOST\",\"value\":\"terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com:5432\"},{\"name\":\"RDS_PASSWORD\",\"value\":\"secureDBPassword123\"},{\"name\":\"RDS_USER\",\"value\":\"admin\"},{\"name\":\"TOPIC_NAME\",\"value\":\"cart_items_consumer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_items_consumer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"cart_items_consumer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-cart_items_consumer-task",
+            "id": "aws-ecommerce-platform-cart_items_consumer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "container_definitions"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "order_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_consumer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_consumer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"RDS_HOST\",\"value\":\"terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com:5432\"},{\"name\":\"RDS_PASSWORD\",\"value\":\"secureDBPassword123\"},{\"name\":\"RDS_USER\",\"value\":\"admin\"},{\"name\":\"TOPIC_NAME\",\"value\":\"order_consumer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_consumer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"order_consumer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-order_consumer-task",
+            "id": "aws-ecommerce-platform-order_consumer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "container_definitions"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "order_items_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_items_consumer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_items_consumer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"RDS_HOST\",\"value\":\"terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com:5432\"},{\"name\":\"RDS_PASSWORD\",\"value\":\"secureDBPassword123\"},{\"name\":\"RDS_USER\",\"value\":\"admin\"},{\"name\":\"TOPIC_NAME\",\"value\":\"order_items_consumer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_items_consumer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"order_items_consumer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-order_items_consumer-task",
+            "id": "aws-ecommerce-platform-order_items_consumer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "container_definitions"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "product_view_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-product_view_consumer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-product_view_consumer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"RDS_HOST\",\"value\":\"terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com:5432\"},{\"name\":\"RDS_PASSWORD\",\"value\":\"secureDBPassword123\"},{\"name\":\"RDS_USER\",\"value\":\"admin\"},{\"name\":\"TOPIC_NAME\",\"value\":\"product_view_consumer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-product_view_consumer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"product_view_consumer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-product_view_consumer-task",
+            "id": "aws-ecommerce-platform-product_view_consumer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "container_definitions"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "session_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-session_consumer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-session_consumer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"RDS_HOST\",\"value\":\"terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com:5432\"},{\"name\":\"RDS_PASSWORD\",\"value\":\"secureDBPassword123\"},{\"name\":\"RDS_USER\",\"value\":\"admin\"},{\"name\":\"TOPIC_NAME\",\"value\":\"session_consumer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-session_consumer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"session_consumer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-session_consumer-task",
+            "id": "aws-ecommerce-platform-session_consumer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "container_definitions"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "support_tickets_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-support_tickets_consumer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-support_tickets_consumer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"RDS_HOST\",\"value\":\"terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com:5432\"},{\"name\":\"RDS_PASSWORD\",\"value\":\"secureDBPassword123\"},{\"name\":\"RDS_USER\",\"value\":\"admin\"},{\"name\":\"TOPIC_NAME\",\"value\":\"support_tickets_consumer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-support_tickets_consumer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"support_tickets_consumer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-support_tickets_consumer-task",
+            "id": "aws-ecommerce-platform-support_tickets_consumer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "container_definitions"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "ticket_messages_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-ticket_messages_consumer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-ticket_messages_consumer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"RDS_HOST\",\"value\":\"terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com:5432\"},{\"name\":\"RDS_PASSWORD\",\"value\":\"secureDBPassword123\"},{\"name\":\"RDS_USER\",\"value\":\"admin\"},{\"name\":\"TOPIC_NAME\",\"value\":\"ticket_messages_consumer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-ticket_messages_consumer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"ticket_messages_consumer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-ticket_messages_consumer-task",
+            "id": "aws-ecommerce-platform-ticket_messages_consumer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "container_definitions"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "wishlists_consumer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-wishlists_consumer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-wishlists_consumer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"RDS_HOST\",\"value\":\"terraform-20241210194109986600000002.czeu4kiiq30w.us-east-1.rds.amazonaws.com:5432\"},{\"name\":\"RDS_PASSWORD\",\"value\":\"secureDBPassword123\"},{\"name\":\"RDS_USER\",\"value\":\"admin\"},{\"name\":\"TOPIC_NAME\",\"value\":\"wishlists_consumer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-wishlists_consumer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"wishlists_consumer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-wishlists_consumer-task",
+            "id": "aws-ecommerce-platform-wishlists_consumer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "container_definitions"
+              }
+            ]
+          ],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_db_instance.analytics_rds",
+            "aws_ecr_repository.consumers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_security_group.rds_sg",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_ecs_task_definition",
+      "name": "producers",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "cart_items_producer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_items_producer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_items_producer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"TOPIC_NAME\",\"value\":\"cart_items_producer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_items_producer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"cart_items_producer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-cart_items_producer-task",
+            "id": "aws-ecommerce-platform-cart_items_producer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "cart_producer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_producer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-cart_producer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"TOPIC_NAME\",\"value\":\"cart_producer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-cart_producer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"cart_producer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-cart_producer-task",
+            "id": "aws-ecommerce-platform-cart_producer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "order_items_producer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_items_producer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_items_producer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"TOPIC_NAME\",\"value\":\"order_items_producer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_items_producer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"order_items_producer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-order_items_producer-task",
+            "id": "aws-ecommerce-platform-order_items_producer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "order_producer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_producer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-order_producer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"TOPIC_NAME\",\"value\":\"order_producer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-order_producer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"order_producer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-order_producer-task",
+            "id": "aws-ecommerce-platform-order_producer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "product_view_producer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-product_view_producer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-product_view_producer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"TOPIC_NAME\",\"value\":\"product_view_producer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-product_view_producer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"product_view_producer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-product_view_producer-task",
+            "id": "aws-ecommerce-platform-product_view_producer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "session_producer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-session_producer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-session_producer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"TOPIC_NAME\",\"value\":\"session_producer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-session_producer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"session_producer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-session_producer-task",
+            "id": "aws-ecommerce-platform-session_producer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "support_tickets_producer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-support_tickets_producer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-support_tickets_producer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"TOPIC_NAME\",\"value\":\"support_tickets_producer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-support_tickets_producer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"support_tickets_producer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-support_tickets_producer-task",
+            "id": "aws-ecommerce-platform-support_tickets_producer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "ticket_messages_producer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-ticket_messages_producer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-ticket_messages_producer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"TOPIC_NAME\",\"value\":\"ticket_messages_producer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-ticket_messages_producer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"ticket_messages_producer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-ticket_messages_producer-task",
+            "id": "aws-ecommerce-platform-ticket_messages_producer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        },
+        {
+          "index_key": "wishlists_producer",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-wishlists_producer-task:1",
+            "arn_without_revision": "arn:aws:ecs:us-east-1:123392663371:task-definition/aws-ecommerce-platform-wishlists_producer-task",
+            "container_definitions": "[{\"cpu\":256,\"environment\":[{\"name\":\"AWS_EXECUTION_ENV\",\"value\":\"AWS\"},{\"name\":\"KAFKA_BOOTSTRAP_SERVERS\",\"value\":\"\"},{\"name\":\"TOPIC_NAME\",\"value\":\"wishlists_producer\"}],\"essential\":true,\"image\":\"123392663371.dkr.ecr.us-east-1.amazonaws.com/aws-ecommerce-platform-wishlists_producer-repo:latest\",\"memory\":512,\"mountPoints\":[],\"name\":\"wishlists_producer\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]",
+            "cpu": "256",
+            "ephemeral_storage": [],
+            "execution_role_arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "family": "aws-ecommerce-platform-wishlists_producer-task",
+            "id": "aws-ecommerce-platform-wishlists_producer-task",
+            "inference_accelerator": [],
+            "ipc_mode": "",
+            "memory": "512",
+            "network_mode": "awsvpc",
+            "pid_mode": "",
+            "placement_constraints": [],
+            "proxy_configuration": [],
+            "requires_compatibilities": [
+              "FARGATE"
+            ],
+            "revision": 1,
+            "runtime_platform": [],
+            "skip_destroy": false,
+            "tags": {},
+            "tags_all": {},
+            "task_role_arn": "",
+            "track_latest": false,
+            "volume": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_ecr_repository.producers",
+            "aws_iam_role.ecs_task_execution_role",
+            "aws_msk_cluster.kafka_cluster",
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_policy_attachment",
+      "name": "ecs_task_execution_role_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "groups": [],
+            "id": "ecs-task-execution-role-policy-attachment",
+            "name": "ecs-task-execution-role-policy-attachment",
+            "policy_arn": "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+            "roles": [
+              "ecs-task-execution-role"
+            ],
+            "users": []
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_iam_role.ecs_task_execution_role"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "ecs_task_execution_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::123392663371:role/ecs-task-execution-role",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs-tasks.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2024-12-10T18:20:16Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "ecs-task-execution-role",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+            ],
+            "max_session_duration": 3600,
+            "name": "ecs-task-execution-role",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {},
+            "tags_all": {},
+            "unique_id": "AROARZOWGT5F4D4YOLCNB"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_msk_cluster",
+      "name": "kafka_cluster",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:kafka:us-east-1:123392663371:cluster/aws-ecommerce-platform-kafka-cluster/bd2c0364-118c-4455-8610-1d385106f455-7",
+            "bootstrap_brokers": "",
+            "bootstrap_brokers_public_sasl_iam": "",
+            "bootstrap_brokers_public_sasl_scram": "",
+            "bootstrap_brokers_public_tls": "",
+            "bootstrap_brokers_sasl_iam": "",
+            "bootstrap_brokers_sasl_scram": "",
+            "bootstrap_brokers_tls": "b-1.awsecommerceplatformka.o8o4gp.c7.kafka.us-east-1.amazonaws.com:9094,b-2.awsecommerceplatformka.o8o4gp.c7.kafka.us-east-1.amazonaws.com:9094",
+            "bootstrap_brokers_vpc_connectivity_sasl_iam": "",
+            "bootstrap_brokers_vpc_connectivity_sasl_scram": "",
+            "bootstrap_brokers_vpc_connectivity_tls": "",
+            "broker_node_group_info": [
+              {
+                "az_distribution": "DEFAULT",
+                "client_subnets": [
+                  "subnet-00629e08a31b77018",
+                  "subnet-01fd268117e67b839"
+                ],
+                "connectivity_info": [
+                  {
+                    "public_access": [
+                      {
+                        "type": "DISABLED"
+                      }
+                    ],
+                    "vpc_connectivity": [
+                      {
+                        "client_authentication": [
+                          {
+                            "sasl": [
+                              {
+                                "iam": false,
+                                "scram": false
+                              }
+                            ],
+                            "tls": false
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "instance_type": "kafka.m5.large",
+                "security_groups": [
+                  "sg-02ef7ab89989c86a6"
+                ],
+                "storage_info": [
+                  {
+                    "ebs_storage_info": [
+                      {
+                        "provisioned_throughput": [],
+                        "volume_size": 1000
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "client_authentication": [],
+            "cluster_name": "aws-ecommerce-platform-kafka-cluster",
+            "cluster_uuid": "bd2c0364-118c-4455-8610-1d385106f455-7",
+            "configuration_info": [
+              {
+                "arn": null,
+                "revision": null
+              }
+            ],
+            "current_version": "K3P5ROKL5A1OLE",
+            "encryption_info": [
+              {
+                "encryption_at_rest_kms_key_arn": "arn:aws:kms:us-east-1:123392663371:key/65b0327f-4d07-49b3-ad49-81392dcb4558",
+                "encryption_in_transit": [
+                  {
+                    "client_broker": "TLS",
+                    "in_cluster": true
+                  }
+                ]
+              }
+            ],
+            "enhanced_monitoring": "DEFAULT",
+            "id": "arn:aws:kafka:us-east-1:123392663371:cluster/aws-ecommerce-platform-kafka-cluster/bd2c0364-118c-4455-8610-1d385106f455-7",
+            "kafka_version": "2.8.1",
+            "logging_info": [],
+            "number_of_broker_nodes": 2,
+            "open_monitoring": [
+              {
+                "prometheus": [
+                  {
+                    "jmx_exporter": [
+                      {
+                        "enabled_in_broker": false
+                      }
+                    ],
+                    "node_exporter": [
+                      {
+                        "enabled_in_broker": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "storage_mode": "LOCAL",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null,
+            "zookeeper_connect_string": "z-1.awsecommerceplatformka.o8o4gp.c7.kafka.us-east-1.amazonaws.com:2181,z-2.awsecommerceplatformka.o8o4gp.c7.kafka.us-east-1.amazonaws.com:2181,z-3.awsecommerceplatformka.o8o4gp.c7.kafka.us-east-1.amazonaws.com:2181",
+            "zookeeper_connect_string_tls": "z-1.awsecommerceplatformka.o8o4gp.c7.kafka.us-east-1.amazonaws.com:2182,z-2.awsecommerceplatformka.o8o4gp.c7.kafka.us-east-1.amazonaws.com:2182,z-3.awsecommerceplatformka.o8o4gp.c7.kafka.us-east-1.amazonaws.com:2182"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo3MjAwMDAwMDAwMDAwLCJkZWxldGUiOjcyMDAwMDAwMDAwMDAsInVwZGF0ZSI6NzIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_security_group.ecs_security_group",
+            "aws_subnet.private_subnet_a",
+            "aws_subnet.private_subnet_b",
+            "aws_vpc.main_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "ecs_security_group",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:123392663371:security-group/sg-02ef7ab89989c86a6",
+            "description": "Managed by Terraform",
+            "egress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 65535
+              }
+            ],
+            "id": "sg-02ef7ab89989c86a6",
+            "ingress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 65535
+              }
+            ],
+            "name": "terraform-20241210182025199600000001",
+            "name_prefix": "terraform-",
+            "owner_id": "123392663371",
+            "revoke_rules_on_delete": false,
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null,
+            "vpc_id": "vpc-0931d328ed2285f12"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "aws_vpc.main_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "rds_sg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:123392663371:security-group/sg-0ed3520005d0b5aa0",
+            "description": "Managed by Terraform",
+            "egress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "-1",
+                "security_groups": [],
+                "self": false,
+                "to_port": 0
+              }
+            ],
+            "id": "sg-0ed3520005d0b5aa0",
+            "ingress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 5432,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 5432
+              }
+            ],
+            "name": "aws-ecommerce-platform-rds-sg",
+            "name_prefix": "",
+            "owner_id": "123392663371",
+            "revoke_rules_on_delete": false,
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null,
+            "vpc_id": "vpc-074dc51f334f61bc8"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_subnet",
+      "name": "private_subnet_a",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:123392663371:subnet/subnet-01fd268117e67b839",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1a",
+            "availability_zone_id": "use1-az6",
+            "cidr_block": "10.0.4.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-01fd268117e67b839",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "123392663371",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null,
+            "vpc_id": "vpc-0931d328ed2285f12"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_vpc.main_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_subnet",
+      "name": "private_subnet_b",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:123392663371:subnet/subnet-00629e08a31b77018",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1b",
+            "availability_zone_id": "use1-az1",
+            "cidr_block": "10.0.5.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-00629e08a31b77018",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "123392663371",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null,
+            "vpc_id": "vpc-0931d328ed2285f12"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_vpc.main_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_subnet",
+      "name": "public_subnet",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:123392663371:subnet/subnet-0d158efbecd46622c",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1f",
+            "availability_zone_id": "use1-az5",
+            "cidr_block": "10.0.1.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-0d158efbecd46622c",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": true,
+            "outpost_arn": "",
+            "owner_id": "123392663371",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "tags": {},
+            "tags_all": {},
+            "timeouts": null,
+            "vpc_id": "vpc-0931d328ed2285f12"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_vpc.main_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_vpc",
+      "name": "main_vpc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:123392663371:vpc/vpc-0931d328ed2285f12",
+            "assign_generated_ipv6_cidr_block": false,
+            "cidr_block": "10.0.0.0/16",
+            "default_network_acl_id": "acl-0ab532f72572c700d",
+            "default_route_table_id": "rtb-0d8826237696eb569",
+            "default_security_group_id": "sg-09f1c4fe185881e9f",
+            "dhcp_options_id": "dopt-02141987ddede4635",
+            "enable_dns_hostnames": false,
+            "enable_dns_support": true,
+            "enable_network_address_usage_metrics": false,
+            "id": "vpc-0931d328ed2285f12",
+            "instance_tenancy": "default",
+            "ipv4_ipam_pool_id": null,
+            "ipv4_netmask_length": null,
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_network_border_group": "",
+            "ipv6_ipam_pool_id": "",
+            "ipv6_netmask_length": 0,
+            "main_route_table_id": "rtb-0d8826237696eb569",
+            "owner_id": "123392663371",
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

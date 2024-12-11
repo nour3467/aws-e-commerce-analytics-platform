@@ -22,6 +22,10 @@ setup:
 	$(PIP) install -r requirements.txt
 
 
+postgres:
+	@echo "Starting Docker Compose..."
+	$(DOCKER_COMPOSE_CMD) up -d postgres
+
 services:
 	@echo "Starting Docker Compose..."
 	$(DOCKER_COMPOSE_CMD) up -d postgres kafka kafka-ui

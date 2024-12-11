@@ -2,11 +2,11 @@ resource "aws_db_instance" "analytics_rds" {
   allocated_storage    = 20
   engine               = "postgres"
   engine_version       = "14"
-  instance_class       = "db.t2.micro"
+  instance_class       = "db.t3.micro"
   db_name              = var.db_name
   username             = var.db_username
   password             = var.db_password
-  publicly_accessible  = false
+  publicly_accessible  = true
   skip_final_snapshot  = true
   multi_az             = false
   vpc_security_group_ids = [aws_security_group.rds_sg.id]

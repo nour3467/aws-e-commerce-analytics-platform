@@ -9,8 +9,15 @@ services:
       POSTGRES_DB: ecommerce
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin_password
+      POSTGRES_HOST_AUTH_METHOD: trust
     ports:
       - "5432:5432"
+    command: >
+      postgres
+      -c listen_addresses='*'
+      -c max_connections=1000
+      -c max_wal_senders=10
+      -c wal_level=logical
     networks:
       - app-network
     volumes:

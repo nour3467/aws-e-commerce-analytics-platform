@@ -87,11 +87,13 @@ resource "aws_ecs_service" "producers" {
   task_definition = each.value.arn
   desired_count   = 1
   launch_type     = "FARGATE"
+
   network_configuration {
-    subnets         = var.public_subnets
+    subnets         = local.private_subnets
     security_groups = [aws_security_group.ecs_security_group.id]
   }
 }
+
 
 # Consumers ECS Service
 resource "aws_ecs_service" "consumers" {
@@ -103,7 +105,7 @@ resource "aws_ecs_service" "consumers" {
   desired_count   = 1
   launch_type     = "FARGATE"
   network_configuration {
-    subnets         = var.private_subnets
+    subnets         = local.private_subnets
     security_groups = [aws_security_group.ecs_security_group.id]
   }
 }
